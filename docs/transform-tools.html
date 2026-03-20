@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transform Tools — AI-Architek Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0c0f; --surface: #111418; --border: #1e2530; --accent: #00e5ff; --text: #e8edf5; --muted: #6b7a8d; --card: #13171e; }
+    body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; line-height: 1.7; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(10,12,15,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .logo span { color: var(--text); }
+    nav a.back { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    nav a.back:hover { color: var(--accent); }
+    .layout { display: grid; grid-template-columns: 220px 1fr; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    aside { padding: 3rem 1.5rem; border-right: 1px solid var(--border); position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
+    aside h4 { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; margin-top: 1.5rem; }
+    aside h4:first-child { margin-top: 0; }
+    aside a { display: block; font-size: 0.78rem; color: var(--muted); text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 5px; margin-bottom: 0.15rem; transition: all 0.15s; }
+    aside a:hover { color: var(--accent); background: rgba(0,229,255,0.05); }
+    aside a.active { color: var(--accent); background: rgba(0,229,255,0.08); }
+    main { padding: 3rem 3.5rem; }
+    .doc-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 700; margin: 2.5rem 0 1rem; }
+    p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    strong { color: var(--text); }
+    .tip { border: 1px solid rgba(0,229,255,0.2); border-radius: 8px; padding: 1rem 1.25rem; background: rgba(0,229,255,0.04); margin: 1.5rem 0; font-size: 0.82rem; color: var(--muted); }
+    .tip strong { color: var(--accent); }
+    .kbd { display: inline-block; font-size: 0.72rem; padding: 0.1rem 0.45rem; border: 1px solid var(--border); border-radius: 4px; color: var(--accent); background: rgba(0,229,255,0.07); }
+    .new-pill { font-size: 0.6rem; background: var(--accent); color: #000; padding: 0.1rem 0.4rem; border-radius: 3px; margin-left: 0.4rem; vertical-align: middle; }
+    .tool-card { border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; background: var(--card); margin-bottom: 1rem; }
+    .tool-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+    .tool-card p { margin: 0; font-size: 0.82rem; }
+    .tool-key { font-size: 0.7rem; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--accent); background: rgba(0,229,255,0.07); font-family: 'JetBrains Mono', monospace; }
+    .nav-footer { display: flex; justify-content: space-between; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .nav-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.65rem 1.25rem; border-radius: 6px; text-decoration: none; background: var(--accent); color: #000; transition: all 0.2s; }
+    .nav-btn:hover { background: #fff; }
+    .nav-btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .nav-btn.ghost:hover { color: var(--text); }
+    @media (max-width: 700px) { .layout { grid-template-columns: 1fr; } aside { display: none; } main { padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">AI-<span>Architek</span></a>
+  <a href="../index.html" class="back">← Back to site</a>
+</nav>
+<div class="layout">
+  <aside>
+    <h4>Getting Started</h4>
+    <a href="getting-started.html">Quick Start</a>
+    <h4>Reference</h4>
+    <a href="draw-tools.html">Draw Tools</a>
+    <a href="transform-tools.html" class="active">Transform Tools</a>
+    <a href="camera-system.html">Camera System</a>
+    <a href="lighting-sky.html">Lighting & Sky</a>
+    <a href="exporting.html">Export & Save</a>
+  </aside>
+  <main>
+    <p class="doc-label">// Reference</p>
+    <h1>Transform Tools</h1>
+    <p class="subtitle">Edit, move, duplicate, and reshape objects. All transforms support multi-select and full undo.</p>
+
+    <h2>Move & Copy</h2>
+    <div class="tool-card">
+      <h3><span class="tool-key">M</span> Move</h3>
+      <p>3-step operation: <strong>1)</strong> Select the object(s) → <strong>2)</strong> Click a base point (the handle to grab) → <strong>3)</strong> Click the destination. Works on multi-select — all selected objects move together as a group.</p>
+    </div>
+    <div class="tool-card">
+      <h3><span class="tool-key">K</span> Copy</h3>
+      <p>Identical 3-step flow as Move, but places a duplicate at the destination and leaves the original untouched. Multi-select copies all selected objects.</p>
+    </div>
+    <div class="tool-card">
+      <h3><span class="tool-key">Ctrl+J</span> Array</h3>
+      <p>Creates a 3D grid of copies at X × Y × Z count. Set the spacing and count in the dialog that appears.</p>
+    </div>
+
+    <h2>Orientation</h2>
+    <div class="tool-card">
+      <h3><span class="tool-key">X</span> Mirror</h3>
+      <p>Reflects selected objects across a line you draw. Click two points to define the mirror axis. Works in 2 axes.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Rotate</h3>
+      <p>Click to set the pivot point, then type an angle in degrees. Use the <strong>X / Y / Z axis selector</strong> to choose which axis to rotate around.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Scale</h3>
+      <p>Scale selected objects along X, Y, Z, or uniformly. Type a scale factor or drag interactively.</p>
+    </div>
+
+    <h2>Geometry Editing</h2>
+    <div class="tool-card">
+      <h3>Stretch / Extrude Face</h3>
+      <p>Click any face on a solid to select it, then drag or type a distance to push or pull it. This is the primary way to resize individual faces after drawing.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Chamfer <span class="new-pill">V6</span></h3>
+      <p>Click a vertical edge on any solid, then type a bevel distance. Cuts the edge at an angle to create a flat chamfer. Fully undoable.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Fillet <span class="new-pill">V6</span></h3>
+      <p>Click a vertical edge and type an arc radius. Rounds the edge with a smooth curve. Each corner can be filleted independently — apply it to all 4 corners of a box one by one for rounded walls.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Delete Face</h3>
+      <p>Removes a single face from a solid without deleting the whole object. Useful for opening up a wall or removing a surface.</p>
+    </div>
+
+    <h2>Boolean Operations</h2>
+    <div class="tool-card">
+      <h3>Union</h3>
+      <p>Merges two overlapping solids into one combined shape. Select both objects, then click Union.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Subtract</h3>
+      <p>Cuts one shape out of another. Select the base solid first, then the cutter shape, then click Subtract. Great for punching door or window openings into walls.</p>
+    </div>
+
+    <h2>Wall Tools</h2>
+    <div class="tool-card">
+      <h3>Trim</h3>
+      <p>Cuts a wall at its intersection with another wall. Click the wall to trim, then click the boundary wall.</p>
+    </div>
+    <div class="tool-card">
+      <h3>Extend</h3>
+      <p>Extends a wall until it meets a boundary line or another wall.</p>
+    </div>
+
+    <h2>Groups & Selection</h2>
+    <div class="tool-card">
+      <h3>Group / Ungroup</h3>
+      <p>Group stamps a shared ID on selected objects so they move and transform together. Changing the color of one group member changes all of them. Ungroup releases them.</p>
+    </div>
+    <div class="tool-card">
+      <h3><span class="tool-key">Ctrl+A</span> Select All</h3>
+      <p>Selects every object in the scene. Combine with Move, Copy, Delete, or any transform.</p>
+    </div>
+
+    <div class="tip"><strong>Undo:</strong> <kbd class="kbd">Ctrl+Z</kbd> undoes one step. <kbd class="kbd">Ctrl+Y</kbd> redoes. Multi-object moves all reverse together in one undo step.</div>
+
+    <div class="nav-footer">
+      <a href="draw-tools.html" class="nav-btn ghost">← Draw Tools</a>
+      <a href="camera-system.html" class="nav-btn">Next: Camera System →</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

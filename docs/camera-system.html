@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camera System — AI-Architek Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0c0f; --surface: #111418; --border: #1e2530; --accent: #00e5ff; --text: #e8edf5; --muted: #6b7a8d; --card: #13171e; }
+    body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; line-height: 1.7; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(10,12,15,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .logo span { color: var(--text); }
+    nav a.back { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    nav a.back:hover { color: var(--accent); }
+    .layout { display: grid; grid-template-columns: 220px 1fr; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    aside { padding: 3rem 1.5rem; border-right: 1px solid var(--border); position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
+    aside h4 { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; margin-top: 1.5rem; }
+    aside h4:first-child { margin-top: 0; }
+    aside a { display: block; font-size: 0.78rem; color: var(--muted); text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 5px; margin-bottom: 0.15rem; transition: all 0.15s; }
+    aside a:hover { color: var(--accent); background: rgba(0,229,255,0.05); }
+    aside a.active { color: var(--accent); background: rgba(0,229,255,0.08); }
+    main { padding: 3rem 3.5rem; }
+    .doc-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 700; margin: 2.5rem 0 1rem; }
+    p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    strong { color: var(--text); }
+    .tip { border: 1px solid rgba(0,229,255,0.2); border-radius: 8px; padding: 1rem 1.25rem; background: rgba(0,229,255,0.04); margin: 1.5rem 0; font-size: 0.82rem; color: var(--muted); }
+    .tip strong { color: var(--accent); }
+    .kbd { display: inline-block; font-size: 0.72rem; padding: 0.1rem 0.45rem; border: 1px solid var(--border); border-radius: 4px; color: var(--accent); background: rgba(0,229,255,0.07); }
+    .step-grid { display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0; }
+    .step { display: flex; gap: 1.25rem; align-items: flex-start; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; background: var(--card); }
+    .step-num { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--accent); min-width: 2rem; line-height: 1; }
+    .step-body h3 { font-family: 'Syne', sans-serif; margin: 0 0 0.3rem; font-size: 0.95rem; font-weight: 700; }
+    .step-body p { margin: 0; font-size: 0.82rem; }
+    .nav-footer { display: flex; justify-content: space-between; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .nav-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.65rem 1.25rem; border-radius: 6px; text-decoration: none; background: var(--accent); color: #000; transition: all 0.2s; }
+    .nav-btn:hover { background: #fff; }
+    .nav-btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .nav-btn.ghost:hover { color: var(--text); }
+    @media (max-width: 700px) { .layout { grid-template-columns: 1fr; } aside { display: none; } main { padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">AI-<span>Architek</span></a>
+  <a href="../index.html" class="back">← Back to site</a>
+</nav>
+<div class="layout">
+  <aside>
+    <h4>Getting Started</h4>
+    <a href="getting-started.html">Quick Start</a>
+    <h4>Reference</h4>
+    <a href="draw-tools.html">Draw Tools</a>
+    <a href="transform-tools.html">Transform Tools</a>
+    <a href="camera-system.html" class="active">Camera System</a>
+    <a href="lighting-sky.html">Lighting & Sky</a>
+    <a href="exporting.html">Export & Save</a>
+  </aside>
+  <main>
+    <p class="doc-label">// Reference</p>
+    <h1>Camera System</h1>
+    <p class="subtitle">Save unlimited named camera views, reposition them live with draggable handles, and cycle lens types — all new in V6.</p>
+
+    <h2>Saving a Camera View</h2>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body"><h3>Set up your view</h3><p>Orbit, pan, and zoom the viewport to exactly the angle you want to save. Use <kbd class="kbd">V</kbd> (Set Cam) to click an eye position and a target point for precision.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body"><h3>Type a name</h3><p>In the <strong>Camera Views</strong> panel at the bottom of the left sidebar, type a name in the text box (e.g. "Entry View" or "South Elevation").</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body"><h3>Click + Save</h3><p>Click the <strong>+ Save</strong> button. The view is stored with its name, position, target, and current lens setting.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body"><h3>Recall it anytime</h3><p>Click the <strong>▶ play arrow</strong> next to any saved view to jump back to it instantly.</p></div>
+      </div>
+    </div>
+
+    <h2>Frustum Cones</h2>
+    <p>Each saved camera displays as a <strong>yellow wireframe cone</strong> in the 3D scene, showing exactly where the camera is and what it can see.</p>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">👁</div>
+        <div class="step-body"><h3>Show / Hide cones</h3><p>Click <strong>Cam Cones</strong> in the Views panel to toggle all frustum cones on or off. Use the per-camera eye icon to hide individual cameras.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">🟡</div>
+        <div class="step-body"><h3>Drag the yellow sphere (eye)</h3><p>Grab the yellow sphere at the cone's tip to reposition the camera's eye point live in the scene.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">🟠</div>
+        <div class="step-body"><h3>Drag the orange sphere (target)</h3><p>Grab the orange sphere to re-aim where the camera is looking. The cone redraws in real time.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">🔍</div>
+        <div class="step-body"><h3>Double-click to cycle lens</h3><p>Double-click either sphere to cycle through the three lens settings: <strong>Wide 90°</strong> → <strong>Normal 50°</strong> → <strong>Tele 20°</strong>. The cone shape updates immediately.</p></div>
+      </div>
+    </div>
+
+    <h2>Lens Settings</h2>
+    <p>You can also click the lens button in the camera list to cycle the lens for that camera. The three options are:</p>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">W</div>
+        <div class="step-body"><h3>Wide — 90°</h3><p>Wide angle. Shows a large field of view. Good for interior shots and tight spaces.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">N</div>
+        <div class="step-body"><h3>Normal — 50°</h3><p>Natural perspective, similar to the human eye. Good default for most exterior views.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">T</div>
+        <div class="step-body"><h3>Tele — 20°</h3><p>Telephoto / compressed perspective. Good for distant elevations and presentation shots.</p></div>
+      </div>
+    </div>
+
+    <div class="tip"><strong>Plan view footprint:</strong> In Plan (top) view, each camera shows a direction arrow and a horizontal FOV outline on the floor so you can see coverage from above. Cones scale automatically with zoom level.</div>
+
+    <div class="nav-footer">
+      <a href="transform-tools.html" class="nav-btn ghost">← Transform Tools</a>
+      <a href="lighting-sky.html" class="nav-btn">Next: Lighting & Sky →</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

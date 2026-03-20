@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Export & Save — AI-Architek Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0a0c0f; --surface: #111418; --border: #1e2530; --accent: #00e5ff; --text: #e8edf5; --muted: #6b7a8d; --card: #13171e; }
+    body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; line-height: 1.7; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(10,12,15,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .logo span { color: var(--text); }
+    nav a.back { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    nav a.back:hover { color: var(--accent); }
+    .layout { display: grid; grid-template-columns: 220px 1fr; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    aside { padding: 3rem 1.5rem; border-right: 1px solid var(--border); position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
+    aside h4 { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; margin-top: 1.5rem; }
+    aside h4:first-child { margin-top: 0; }
+    aside a { display: block; font-size: 0.78rem; color: var(--muted); text-decoration: none; padding: 0.35rem 0.75rem; border-radius: 5px; margin-bottom: 0.15rem; transition: all 0.15s; }
+    aside a:hover { color: var(--accent); background: rgba(0,229,255,0.05); }
+    aside a.active { color: var(--accent); background: rgba(0,229,255,0.08); }
+    main { padding: 3rem 3.5rem; }
+    .doc-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    h2 { font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 700; margin: 2.5rem 0 1rem; }
+    p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    strong { color: var(--text); }
+    .tip { border: 1px solid rgba(0,229,255,0.2); border-radius: 8px; padding: 1rem 1.25rem; background: rgba(0,229,255,0.04); margin: 1.5rem 0; font-size: 0.82rem; color: var(--muted); }
+    .tip strong { color: var(--accent); }
+    .export-card { border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; background: var(--card); margin-bottom: 1rem; display: flex; gap: 1.25rem; }
+    .export-badge { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 800; color: #000; background: var(--accent); padding: 0.25rem 0.6rem; border-radius: 4px; white-space: nowrap; height: fit-content; margin-top: 0.1rem; letter-spacing: 0.05em; }
+    .export-body h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .export-body p { margin: 0; font-size: 0.82rem; }
+    .export-body .compat { font-size: 0.72rem; color: var(--accent); margin-top: 0.4rem; }
+    .nav-footer { display: flex; justify-content: space-between; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .nav-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.65rem 1.25rem; border-radius: 6px; text-decoration: none; background: var(--accent); color: #000; transition: all 0.2s; }
+    .nav-btn:hover { background: #fff; }
+    .nav-btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .nav-btn.ghost:hover { color: var(--text); }
+    @media (max-width: 700px) { .layout { grid-template-columns: 1fr; } aside { display: none; } main { padding: 2rem 1.5rem; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">AI-<span>Architek</span></a>
+  <a href="../index.html" class="back">← Back to site</a>
+</nav>
+<div class="layout">
+  <aside>
+    <h4>Getting Started</h4>
+    <a href="getting-started.html">Quick Start</a>
+    <h4>Reference</h4>
+    <a href="draw-tools.html">Draw Tools</a>
+    <a href="transform-tools.html">Transform Tools</a>
+    <a href="camera-system.html">Camera System</a>
+    <a href="lighting-sky.html">Lighting & Sky</a>
+    <a href="exporting.html" class="active">Export & Save</a>
+  </aside>
+  <main>
+    <p class="doc-label">// Reference</p>
+    <h1>Export & Save</h1>
+    <p class="subtitle">Export your work to 5 formats, or save the full scene as a native JSON file to reload later.</p>
+
+    <h2>Export Formats</h2>
+    <p>All export buttons are in the <strong>top toolbar</strong>. Click any to download the file immediately.</p>
+
+    <div class="export-card">
+      <span class="export-badge">DXF</span>
+      <div class="export-body">
+        <h3>Export DXF</h3>
+        <p>AC1015 (R2000) format using LWPOLYLINE entities. Units are in meters. Best for sending to CAD software for further documentation or detailing.</p>
+        <p class="compat">Compatible with: Rhino, AutoCAD, BricsCAD, LibreCAD</p>
+      </div>
+    </div>
+
+    <div class="export-card">
+      <span class="export-badge">OBJ</span>
+      <div class="export-body">
+        <h3>Export OBJ</h3>
+        <p>Wavefront OBJ with vertex normals and named groups per object. Good all-purpose 3D mesh format for rendering and 3D printing.</p>
+        <p class="compat">Compatible with: Blender, Cinema 4D, 3ds Max, Maya, SketchFab, most renderers</p>
+      </div>
+    </div>
+
+    <div class="export-card">
+      <span class="export-badge">3DS</span>
+      <div class="export-body">
+        <h3>Export 3DS</h3>
+        <p>Binary 3D Studio format with proper MAIN3DS/EDIT3DS chunk structure. Legacy format with wide compatibility across older tools.</p>
+        <p class="compat">Compatible with: 3ds Max, many CAD and visualization tools</p>
+      </div>
+    </div>
+
+    <div class="export-card">
+      <span class="export-badge">PDF</span>
+      <div class="export-body">
+        <h3>Export PDF / PNG</h3>
+        <p>Captures the current viewport as-is — what you see is what you get. Set up the exact view you want first (elevation, perspective, plan view) then export. Great for quick presentations and sharing.</p>
+        <p class="compat">Use with: Plan view for floor plans, Front/Right/Left/Back for elevations, 3D for perspective presentations</p>
+      </div>
+    </div>
+
+    <div class="tip"><strong>Tip for clean elevations:</strong> Switch to Front <strong>(5)</strong>, Right <strong>(6)</strong>, or another elevation view, turn on Wireframe <strong>(Z)</strong> if needed, then export PDF for a clean 2D drawing.</div>
+
+    <h2>Save & Open (Native Format)</h2>
+    <p>The <strong>Save</strong> and <strong>Save As...</strong> buttons in the top toolbar save your entire scene as a <strong>.json</strong> file. This is AI-Architek's native format and saves everything:</p>
+    <div class="export-card" style="flex-direction:column; gap:0.5rem;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.82rem;">
+        <div style="color:var(--muted);">✓ All objects and geometry</div>
+        <div style="color:var(--muted);">✓ Object colors and groups</div>
+        <div style="color:var(--muted);">✓ Lighting settings</div>
+        <div style="color:var(--muted);">✓ Sky and environment</div>
+        <div style="color:var(--muted);">✓ All saved camera views</div>
+        <div style="color:var(--muted);">✓ Camera frustum cones</div>
+        <div style="color:var(--muted);">✓ Solar position settings</div>
+        <div style="color:var(--muted);">✓ Grid and snap settings</div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">To reload a saved scene, click <strong>Open</strong> in the top toolbar and select your <strong>.json</strong> file. Everything restores exactly as you left it.</p>
+
+    <div class="tip"><strong>Good habit:</strong> Use <strong>Save As...</strong> with version numbers to keep backups — e.g. <em>project-v1.json</em>, <em>project-v2.json</em>. This way you can always roll back to an earlier version.</div>
+
+    <div class="nav-footer">
+      <a href="lighting-sky.html" class="nav-btn ghost">← Lighting & Sky</a>
+      <a href="getting-started.html" class="nav-btn">↑ Back to Quick Start</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>
