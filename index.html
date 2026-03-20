@@ -437,7 +437,6 @@
       overflow: hidden;
     }
 
-    /* animated wireframe bg in demo cards */
     .demo-thumb::before {
       content: '';
       position: absolute;
@@ -873,11 +872,11 @@
       border-top: 1px solid var(--border);
       padding: 3rem 2rem;
       text-align: center;
-      color: var(--muted);
+      color: #b0bac8;
       font-size: 0.75rem;
     }
 
-    footer a { color: var(--muted); text-decoration: none; }
+    footer a { color: #b0bac8; text-decoration: none; }
     footer a:hover { color: var(--accent); }
 
     /* ── ANIMATIONS ── */
@@ -925,7 +924,6 @@
   <section class="hero">
     <div class="hero-glow"></div>
 
-    <!-- Decorative wireframe cube SVG -->
     <svg class="wireframe" width="500" height="500" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="40" y="40" width="120" height="120" stroke="#00e5ff" stroke-width="1"/>
       <rect x="60" y="20" width="120" height="120" stroke="#00e5ff" stroke-width="1"/>
@@ -1000,7 +998,7 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon">☀️</div>
-          <h3>Solar Lighting & Sky</h3>
+          <h3>Solar Lighting &amp; Sky</h3>
           <p>Real azimuth/elevation calculations for 14 regions by month and time of day. Upload any panoramic JPG/PNG as a sky dome — shows in elevation views too.</p>
         </div>
         <div class="feature-card">
@@ -1116,7 +1114,6 @@
         <button class="tab-btn" onclick="showTab(this,'tab-export')">Export</button>
       </div>
 
-      <!-- DRAW TOOLS -->
       <table class="tool-table active" id="tab-draw">
         <thead><tr><th>Tool</th><th>Key</th><th>Description</th></tr></thead>
         <tbody>
@@ -1142,7 +1139,6 @@
         </tbody>
       </table>
 
-      <!-- TRANSFORM -->
       <table class="tool-table" id="tab-transform">
         <thead><tr><th>Tool</th><th>Key</th><th>Description</th></tr></thead>
         <tbody>
@@ -1167,7 +1163,6 @@
         </tbody>
       </table>
 
-      <!-- VIEWS -->
       <table class="tool-table" id="tab-views">
         <thead><tr><th>View</th><th>Key</th><th>Description</th></tr></thead>
         <tbody>
@@ -1190,7 +1185,6 @@
         </tbody>
       </table>
 
-      <!-- EXPORT -->
       <table class="tool-table" id="tab-export">
         <thead><tr><th>Format</th><th>—</th><th>Notes</th></tr></thead>
         <tbody>
@@ -1204,8 +1198,6 @@
 
     </div>
   </section>
-
-
 
   <!-- ── DOCS ── -->
   <section id="docs">
@@ -1364,7 +1356,6 @@
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Download a ready-made scene file to explore. Open AI-Architek, click <strong>Open</strong>, and load the file to see it in action.
           </p>
-          <!-- Replace href with your actual demo .json file URL -->
           <a href="https://github.com/architeketh/ai-architek/releases/latest/download/demo.aiarch" class="btn-primary" download>
             ↓ Download Demo File
           </a>
@@ -1374,7 +1365,7 @@
         <div class="reveal" style="border:1px solid var(--border); border-radius:12px; padding:2.5rem; background:var(--card);">
           <div style="font-size:2rem; margin-bottom:1rem;">✉️</div>
           <p class="section-label">// Get in touch</p>
-          <h3 style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:0.75rem;">Bugs & Features</h3>
+          <h3 style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:0.75rem;">Bugs &amp; Features</h3>
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Found a bug? Have an idea for a new feature? Send an email and I'll get back to you as soon as I can.
           </p>
@@ -1387,15 +1378,16 @@
     </div>
   </section>
 
+  <!-- ── FOOTER — 3 changes: whiter text, GitHub unlinked, License → local page ── -->
   <footer>
     <p>
-      Built with ♥ · 
-      <a href="https://github.com/architeketh/ai-architek" target="_blank">GitHub</a> · 
-      <a href="docs/getting-started.html">Documentation</a> · 
-      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> · 
-      <a href="https://github.com/architeketh/ai-architek/blob/main/LICENSE" target="_blank">License</a>
+      Built with ♥ ·
+      GitHub ·
+      <a href="docs/getting-started.html">Documentation</a> ·
+      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> ·
+      <a href="license.html">License</a>
     </p>
-    <p style="margin-top:0.5rem; font-size:0.65rem; color:#3a4454">
+    <p style="margin-top:0.5rem; font-size:0.65rem; color:#8895a7">
       © 2025 AI-Architek. All rights reserved.
     </p>
   </footer>
@@ -1410,12 +1402,9 @@
       document.getElementById(id).classList.add('active');
     }
 
-    // ── Replace architeketh with your GitHub username ──────
     const GITHUB_USERNAME = 'architeketh';
     const GITHUB_REPO     = 'ai-architek';
-    // ─────────────────────────────────────────────────────────
 
-    // Fetch latest release info + download count from GitHub API
     async function loadReleaseInfo() {
       try {
         const res  = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`);
@@ -1427,14 +1416,12 @@
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
         );
 
-        // Version & date
         document.getElementById('version-label').textContent    = latest.tag_name || 'v1.0.0';
         document.getElementById('release-date').textContent     =
           new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
         document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
         document.getElementById('hero-dl-count').textContent    = totalDownloads.toLocaleString();
 
-        // Find the HTML file asset and set download link
         if (latest.assets.length) {
           const htmlAsset = latest.assets.find(a => a.name.endsWith('.html')) || latest.assets[0];
           document.getElementById('main-download-btn').href = htmlAsset.browser_download_url;
@@ -1444,14 +1431,12 @@
       }
     }
 
-    // Scroll reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Init
     loadReleaseInfo();
   </script>
 </body>
