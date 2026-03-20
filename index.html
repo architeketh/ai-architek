@@ -747,6 +747,115 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── GALLERY ── */
+    #gallery {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .gallery-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .gallery-submit:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.04);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--card);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .gallery-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: var(--surface);
+    }
+
+    .gallery-info {
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .gallery-author {
+      font-size: 0.78rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .gallery-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(0,229,255,0.25);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* empty state */
+    .gallery-empty {
+      grid-column: 1 / -1;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .gallery-empty p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin-top: 0.75rem;
+    }
+
+    .gallery-empty .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
     /* ── DONATE ── */
     #donate {
       padding: 8rem 0;
@@ -915,6 +1024,7 @@
       <li><a href="#whats-new">V6 New</a></li>
       <li><a href="#tools">Tools</a></li>
       <li><a href="#docs">Docs</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#download">Download</a></li>
       <li><a href="#donate">Support</a></li>
     </ul>
@@ -1259,6 +1369,31 @@
     </div>
   </section>
 
+  <!-- ── GALLERY ── -->
+  <section id="gallery">
+    <div class="container">
+      <div class="gallery-header reveal">
+        <div>
+          <p class="section-label">// Community</p>
+          <h2 class="section-title">Made with AI-Architek.</h2>
+          <p class="section-desc">Work created by the community. Submit your best renders and get featured.</p>
+        </div>
+        <a href="https://airtable.com/appeds73VVqOiOMzo/pag4iMECuZoE3mZgm/form" target="_blank" class="gallery-submit">
+          📸 Submit Your Work →
+        </a>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid">
+        <div class="gallery-empty">
+          <div class="empty-icon">⏳</div>
+          <h3 style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem;">Loading gallery...</h3>
+          <p style="color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">Fetching community submissions.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ── DOWNLOAD ── -->
   <section id="download">
     <div class="container">
@@ -1369,8 +1504,8 @@
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Found a bug? Have an idea for a new feature? Send an email and I'll get back to you as soon as I can.
           </p>
-          <a href="mailto:architek.eth@gmail.com" class="btn-primary">
-            ✉ architek.eth@gmail.com
+          <a href="/cdn-cgi/l/email-protection#0a6b786962637e6f61246f7e624a6d676b636624696567" class="btn-primary">
+            ✉ <span class="__cf_email__" data-cfemail="95f4e7f6fdfce1f0febbf0e1fdd5f2f8f4fcf9bbf6faf8">[email&#160;protected]</span>
           </a>
         </div>
 
@@ -1384,7 +1519,7 @@
       Built with ♥ ·
       GitHub ·
       <a href="docs/getting-started.html">Documentation</a> ·
-      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> ·
+      <a href="/cdn-cgi/l/email-protection#21405342494855444a0f44554961464c40484d0f424e4c">Report a Bug</a> ·
       <a href="license.html">License</a>
     </p>
     <p style="margin-top:0.5rem; font-size:0.65rem; color:#8895a7">
@@ -1393,7 +1528,7 @@
   </footer>
 
   <!-- ── SCRIPTS ── -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Tools tab switching
     function showTab(btn, id) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1431,6 +1566,59 @@
       }
     }
 
+    // ── AIRTABLE GALLERY ──────────────────────────────────
+    const AT_TOKEN = 'patw7d2sZksIRqt0D.bb91bcbe71c83bef577c6c81c4f57c851eec9df4014e13dc0683e3c9cc659f43';
+    const AT_BASE  = 'appeds73VVqOiOMzo';
+    const AT_TABLE = 'Gallery';
+
+    async function loadGallery() {
+      const grid = document.getElementById('gallery-grid');
+      try {
+        const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}` +
+                    `?filterByFormula={Approved}=TRUE()&sort[0][field]=Created&sort[0][direction]=desc`;
+        const res  = await fetch(url, { headers: { Authorization: `Bearer ${AT_TOKEN}` } });
+        const data = await res.json();
+
+        if (!data.records || data.records.length === 0) {
+          grid.innerHTML = `
+            <div class="gallery-empty">
+              <div class="empty-icon">🏛️</div>
+              <h3 style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem;">Be the first to be featured.</h3>
+              <p style="color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">
+                Submit your work using the button above and it'll appear here once approved.
+              </p>
+            </div>`;
+          return;
+        }
+
+        grid.innerHTML = data.records.map(r => {
+          const f   = r.fields;
+          const img = f.Image && f.Image[0] ? f.Image[0].url : null;
+          const name = f.Name        || 'Anonymous';
+          const desc = f.Description || '';
+          const tag  = f.Tag         || 'AI-Architek';
+          if (!img) return '';
+          return `
+            <div class="gallery-card">
+              <img class="gallery-img" src="${img}" alt="${desc || name}" loading="lazy" />
+              <div class="gallery-info">
+                <span class="gallery-author">${name}</span>
+                <span class="gallery-tag">${tag}</span>
+              </div>
+            </div>`;
+        }).join('');
+
+      } catch (e) {
+        grid.innerHTML = `
+          <div class="gallery-empty">
+            <div class="empty-icon">🏛️</div>
+            <h3 style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem;">Be the first to be featured.</h3>
+            <p style="color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">Submit your work using the button above.</p>
+          </div>`;
+      }
+    }
+    // ─────────────────────────────────────────────────────
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
@@ -1438,6 +1626,7 @@
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
     loadReleaseInfo();
+    loadGallery();
   </script>
 </body>
 </html>
