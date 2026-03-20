@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI-Architek — 3D Modeling Studio</title>
+  <title>AI-Architek — Browser-Based 3D Architectural CAD</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -531,6 +531,153 @@
 
     .os-btn span { font-size: 1.5rem; }
 
+    /* ── WHAT'S NEW ── */
+    #whats-new {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .new-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .new-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .new-card {
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      background: rgba(0,229,255,0.03);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .new-badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--accent);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .new-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    .new-card p {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    /* keyboard shortcut pill */
+    .kbd {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 0.1rem 0.45rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent);
+      background: rgba(0,229,255,0.07);
+      font-family: 'JetBrains Mono', monospace;
+      margin-left: 0.3rem;
+    }
+
+    /* ── TOOLS QUICK REF ── */
+    #tools {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .tools-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+    }
+
+    .tool-table {
+      width: 100%;
+      border-collapse: collapse;
+      display: none;
+    }
+
+    .tool-table.active { display: table; }
+
+    .tool-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tool-table td {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(30,37,48,0.6);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    .tool-table tr:hover td { background: rgba(0,229,255,0.02); }
+
+    .tool-table td:first-child { color: var(--text); font-weight: 500; }
+    .tool-table td:nth-child(2) { color: var(--accent); width: 60px; text-align: center; }
+    .tool-table td:last-child { color: var(--muted); }
+
+    .new-pill {
+      font-size: 0.6rem;
+      background: var(--accent);
+      color: #000;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
+
     /* ── DONATE ── */
     #donate {
       padding: 8rem 0;
@@ -696,6 +843,8 @@
     <a href="#" class="logo">AI-<span>Architek</span></a>
     <ul>
       <li><a href="#features">Features</a></li>
+      <li><a href="#whats-new">V6 New</a></li>
+      <li><a href="#tools">Tools</a></li>
       <li><a href="#demos">Demos</a></li>
       <li><a href="#docs">Docs</a></li>
       <li><a href="#download">Download</a></li>
@@ -717,17 +866,17 @@
       <line x1="160" y1="160" x2="180" y2="140" stroke="#00e5ff" stroke-width="1"/>
     </svg>
 
-    <div class="hero-badge">Free & Open Source</div>
-    <h1>The <em>3D</em><br/>Modeling Studio</h1>
+    <div class="hero-badge">Version 6 — Now Available</div>
+    <h1><em>AI-Architek</em><br/>V6</h1>
     <p class="hero-sub">
-      A powerful, intuitive 3D modeling application built for artists, designers, and creators. Free to download. Built with passion.
+      A browser-based 3D architectural CAD tool. No installation, no plugins — just open the HTML file and start building. All tools, all exports, fully offline.
     </p>
     <div class="hero-actions">
       <a href="#download" class="btn-primary">
         ↓ Download Free
       </a>
-      <a href="#demos" class="btn-secondary">
-        View Demos →
+      <a href="#tools" class="btn-secondary">
+        View All Tools →
       </a>
     </div>
     <div class="dl-count">
@@ -740,41 +889,234 @@
     <div class="container">
       <div class="features-header reveal">
         <p class="section-label">// What's inside</p>
-        <h2 class="section-title">Built for real work.</h2>
-        <p class="section-desc">Everything you need to bring your 3D ideas to life, without the bloat.</p>
+        <h2 class="section-title">Everything in one file.</h2>
+        <p class="section-desc">18+ draw tools, full transform suite, real exports — runs entirely in your browser. No install. No account. No internet after download.</p>
       </div>
       <div class="features-grid reveal">
         <div class="feature-card">
-          <div class="feature-icon">⬡</div>
-          <h3>Polygon Mesh Editing</h3>
-          <p>Full suite of mesh editing tools including extrude, bevel, loop cuts, and vertex manipulation.</p>
+          <div class="feature-icon">🏗️</div>
+          <h3>Architectural Draw Tools</h3>
+          <p>Walls, doors, windows, floors, ceilings, roofs, and 10+ shape primitives including spheres, domes, and cones — all with keyboard shortcuts.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">◈</div>
-          <h3>Real-time Preview</h3>
-          <p>See your changes instantly with a live OpenGL viewport that keeps up with every edit.</p>
+          <div class="feature-icon">📐</div>
+          <h3>Precision Transforms</h3>
+          <p>3-step Move &amp; Copy, Mirror, Rotate (X/Y/Z axis), Scale, Stretch, Extrude Face, Boolean Union/Subtract, Chamfer, and Fillet on any edge.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⬢</div>
-          <h3>Export Anywhere</h3>
-          <p>Export to OBJ, FBX, STL, GLTF, and more. Compatible with every major pipeline.</p>
+          <div class="feature-icon">📷</div>
+          <h3>Named Camera System</h3>
+          <p>Save unlimited named camera views. Interactive frustum cones let you drag eye/target points directly in the scene. Per-camera lens cycling and visibility toggle.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">◉</div>
-          <h3>Procedural Tools</h3>
-          <p>Non-destructive modifiers let you experiment freely and iterate without losing your work.</p>
+          <div class="feature-icon">🎯</div>
+          <h3>Smart Snapping</h3>
+          <p>Endpoint, midpoint, grid, and angle snapping with a generous 50px threshold. Vertical snap in elevation views with ortho-axis constraint to prevent depth drift.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">◎</div>
-          <h3>Lightweight</h3>
-          <p>Runs fast on modest hardware. No subscription. No cloud required. Just install and create.</p>
+          <div class="feature-icon">☀️</div>
+          <h3>Solar Lighting & Sky</h3>
+          <p>Real azimuth/elevation calculations for 14 regions by month and time of day. Upload any panoramic JPG/PNG as a sky dome — shows in elevation views too.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⬦</div>
-          <h3>Open File Format</h3>
-          <p>Projects save in a readable format so your work is always yours — no lock-in.</p>
+          <div class="feature-icon">📦</div>
+          <h3>5 Export Formats</h3>
+          <p>Export to DXF (Rhino-compatible), OBJ with normals, binary 3DS, PDF/PNG viewport capture, and native JSON for full scene save/reload.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT'S NEW IN V6 ── -->
+  <section id="whats-new">
+    <div class="container">
+      <div class="new-header reveal">
+        <div>
+          <p class="section-label">// Changelog</p>
+          <h2 class="section-title">What's new in V6.</h2>
+        </div>
+        <p class="section-desc" style="text-align:right">Major additions since V3 — new shapes, camera system, sky, edge tools, and a full round of bug fixes.</p>
+      </div>
+      <div class="new-grid reveal">
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Sphere &amp; Dome <span class="kbd">E</span></h4>
+            <p>Full ellipsoid sphere with Y-axis height scaling, plus a dome primitive with a flat base cap — both fully extrudable and exportable.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Camera Frustum Cones</h4>
+            <p>Save named camera views with lens settings. Yellow wireframe cones show each camera's FOV in the scene — drag the eye or target spheres to reposition live.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Sky System</h4>
+            <p>Sky on/off toggle with color + horizon pickers. Upload any JPG/PNG panorama as a full sky dome — it wraps equirectangularly and appears in all elevation views.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Chamfer &amp; Fillet</h4>
+            <p>Click any vertical edge and type a bevel distance (Chamfer) or arc radius (Fillet). Each corner can be filleted independently and all operations fully undo.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Left &amp; Back Views</h4>
+            <p>Two new elevation views — Left <span class="kbd">opposite of 6</span> and Back — completing the full 6-direction orthographic set alongside Front, Right, Top, and Iso.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Tumble Mode <span class="kbd">T</span></h4>
+            <p>Free spherical orbit around the model center — rotate to any angle including below the floor plane. Great for checking underside geometry.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Two-Pass Selection</h4>
+            <p>Exact geometry ray-cast first, then a 24px proximity fallback for thin or small objects — so you never miss a click on complex scenes.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Save/Load Position Bug</h4>
+            <p>Boolean and stretched objects now reload at correct XYZ positions. The previous double-Y-offset that moved objects on reload is resolved.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Copy &amp; Fillet Fixes</h4>
+            <p>Copy/mirror of stretched objects now clones live geometry. Fillet no longer overwrites previous fillets, and Chamfer/Fillet undo restores geometry instead of deleting the object.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TOOLS QUICK REFERENCE ── -->
+  <section id="tools">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:3rem">
+        <p class="section-label">// Quick reference</p>
+        <h2 class="section-title">All tools.</h2>
+        <p class="section-desc">Every tool in AI-Architek V6 — with keyboard shortcuts and descriptions.</p>
+      </div>
+
+      <div class="tools-tabs reveal">
+        <button class="tab-btn active" onclick="showTab(this,'tab-draw')">Draw Tools</button>
+        <button class="tab-btn" onclick="showTab(this,'tab-transform')">Transform</button>
+        <button class="tab-btn" onclick="showTab(this,'tab-views')">Views</button>
+        <button class="tab-btn" onclick="showTab(this,'tab-export')">Export</button>
+      </div>
+
+      <!-- DRAW TOOLS -->
+      <table class="tool-table active" id="tab-draw">
+        <thead><tr><th>Tool</th><th>Key</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Line</td><td>L</td><td>Multi-point polyline, extrudable into a wall or slab</td></tr>
+          <tr><td>Curved Line</td><td>J</td><td>Catmull-Rom spline for smooth curved paths</td></tr>
+          <tr><td>Polygon</td><td>P</td><td>Closed polygon, extrudable into any prismatic shape</td></tr>
+          <tr><td>Curved Poly</td><td>U</td><td>Smooth closed spline polygon</td></tr>
+          <tr><td>Rectangle</td><td>R</td><td>2-corner rect, extrudable</td></tr>
+          <tr><td>Square</td><td>Q</td><td>Constrained square</td></tr>
+          <tr><td>Circle</td><td>C</td><td>Circle or extruded cylinder</td></tr>
+          <tr><td>Cone</td><td>N</td><td>2-click cone with interactive height bar</td></tr>
+          <tr><td>Pyramid</td><td>Y</td><td>Square-base pyramid</td></tr>
+          <tr><td>Sphere <span class="new-pill">V6</span></td><td>E</td><td>Full ellipsoid — height scales the Y axis independently</td></tr>
+          <tr><td>Dome <span class="new-pill">V6</span></td><td>—</td><td>Upper hemisphere with a flat base cap</td></tr>
+          <tr><td>Wall</td><td>W</td><td>Chained walls at any angle</td></tr>
+          <tr><td>Door</td><td>D</td><td>Floor 2-click or auto-place on a face</td></tr>
+          <tr><td>Window</td><td>I</td><td>Floor 2-click or auto-place on a face</td></tr>
+          <tr><td>Floor</td><td>F</td><td>Multi-point extruded floor slab</td></tr>
+          <tr><td>Ceiling</td><td>G</td><td>Ceiling panel</td></tr>
+          <tr><td>Roof</td><td>O</td><td>Hip/gable roof generated from a footprint</td></tr>
+          <tr><td>Face Rect</td><td>B</td><td>Draw a rectangle directly on any face</td></tr>
+          <tr><td>Face Circle</td><td>H</td><td>Draw a circle directly on any face</td></tr>
+        </tbody>
+      </table>
+
+      <!-- TRANSFORM -->
+      <table class="tool-table" id="tab-transform">
+        <thead><tr><th>Tool</th><th>Key</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Move</td><td>M</td><td>3-step: select → base point → destination. Works on multi-select.</td></tr>
+          <tr><td>Copy</td><td>K</td><td>3-step: select → base point → destination. Works on multi-select.</td></tr>
+          <tr><td>Mirror</td><td>X</td><td>2-axis mirror across any line</td></tr>
+          <tr><td>Rotate</td><td>—</td><td>Click pivot → type angle. X/Y/Z axis selector.</td></tr>
+          <tr><td>Scale</td><td>—</td><td>Scale on X / Y / Z / Uniform</td></tr>
+          <tr><td>Group / Ungroup</td><td>—</td><td>Stamps shared _groupId — color changes apply to all group members</td></tr>
+          <tr><td>Select All</td><td>Ctrl+A</td><td>Selects all objects in the scene</td></tr>
+          <tr><td>Array</td><td>Ctrl+J</td><td>3D grid array at X×Y×Z count</td></tr>
+          <tr><td>Union</td><td>—</td><td>Boolean union of two solids</td></tr>
+          <tr><td>Subtract</td><td>—</td><td>Boolean subtract of one solid from another</td></tr>
+          <tr><td>Stretch</td><td>—</td><td>Click a face → drag or type distance to push it</td></tr>
+          <tr><td>Extrude Face</td><td>—</td><td>Push any face outward (same as Stretch)</td></tr>
+          <tr><td>Chamfer <span class="new-pill">V6</span></td><td>—</td><td>Click a vertical edge, type bevel distance</td></tr>
+          <tr><td>Fillet <span class="new-pill">V6</span></td><td>—</td><td>Click a vertical edge, type arc radius — each corner independently</td></tr>
+          <tr><td>Delete Face</td><td>—</td><td>Remove a single face from any solid</td></tr>
+          <tr><td>Trim</td><td>—</td><td>Cut a wall at its intersection with another</td></tr>
+          <tr><td>Extend</td><td>—</td><td>Extend a wall to meet a boundary line</td></tr>
+          <tr><td>Undo / Redo</td><td>Ctrl+Z / Ctrl+Y</td><td>Full undo history — multi-object move/copy reverses all at once</td></tr>
+        </tbody>
+      </table>
+
+      <!-- VIEWS -->
+      <table class="tool-table" id="tab-views">
+        <thead><tr><th>View</th><th>Key</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>3D Perspective</td><td>3</td><td>Free orbit perspective viewport</td></tr>
+          <tr><td>Plan (Top)</td><td>4</td><td>Orthographic looking straight down</td></tr>
+          <tr><td>Front Elevation</td><td>5</td><td>Front orthographic elevation</td></tr>
+          <tr><td>Right Elevation</td><td>6</td><td>Right side orthographic elevation</td></tr>
+          <tr><td>Left Elevation <span class="new-pill">V6</span></td><td>—</td><td>Opposite side elevation</td></tr>
+          <tr><td>Back Elevation <span class="new-pill">V6</span></td><td>—</td><td>Rear orthographic elevation</td></tr>
+          <tr><td>Isometric</td><td>7</td><td>Fixed 30° isometric projection</td></tr>
+          <tr><td>Bird's Eye</td><td>9</td><td>Wide-angle overhead perspective</td></tr>
+          <tr><td>Tumble <span class="new-pill">V6</span></td><td>T</td><td>Free spherical orbit — rotate to any angle including below</td></tr>
+          <tr><td>Zoom All</td><td>A</td><td>Fit all objects into view</td></tr>
+          <tr><td>Zoom In ×2 <span class="new-pill">V6</span></td><td>—</td><td>Step closer to model</td></tr>
+          <tr><td>Zoom Out ×2 <span class="new-pill">V6</span></td><td>—</td><td>Step farther (max distance 600m)</td></tr>
+          <tr><td>Wireframe</td><td>Z</td><td>Toggle wireframe display mode</td></tr>
+          <tr><td>Grid</td><td>G</td><td>Toggle floor + vertical reference grids</td></tr>
+          <tr><td>Set Camera</td><td>V</td><td>Click eye position → click look-at target</td></tr>
+          <tr><td>Camera Cones <span class="new-pill">V6</span></td><td>—</td><td>Show/hide frustum cone for all saved cameras</td></tr>
+        </tbody>
+      </table>
+
+      <!-- EXPORT -->
+      <table class="tool-table" id="tab-export">
+        <thead><tr><th>Format</th><th>—</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>DXF</td><td>—</td><td>AC1015 (R2000), LWPOLYLINE, meters — Rhino-compatible</td></tr>
+          <tr><td>OBJ</td><td>—</td><td>Wavefront with vertex normals + named groups per object</td></tr>
+          <tr><td>3DS</td><td>—</td><td>Binary 3D Studio with MAIN3DS/EDIT3DS chunk structure</td></tr>
+          <tr><td>PDF / PNG</td><td>—</td><td>Canvas capture of the current viewport at full resolution</td></tr>
+          <tr><td>Native JSON</td><td>—</td><td>Full scene save: objects, rotation, lighting, all camera views</td></tr>
+        </tbody>
+      </table>
+
     </div>
   </section>
 
@@ -784,68 +1126,64 @@
       <div class="demos-header reveal">
         <div>
           <p class="section-label">// Project showcase</p>
-          <h2 class="section-title">Made with this app.</h2>
+          <h2 class="section-title">Made with AI-Architek.</h2>
         </div>
         <p class="section-desc" style="text-align:right">
-          Download any project file and open it directly in the app to learn from it.
+          Download any project file (.json), open AI-Architek, and load it to explore the scene.
         </p>
       </div>
 
       <div class="demos-grid">
 
-        <!-- DEMO CARD 1 — replace with your actual demo -->
         <div class="demo-card reveal">
           <div class="demo-thumb">
-            <span>🧊</span>
+            <span>🏠</span>
           </div>
           <div class="demo-info">
-            <h3>Geometric Sculpture</h3>
-            <p>A complex interlocking geometry piece showing procedural modifier stacking and subdivision surfaces.</p>
+            <h3>Residential Floor Plan</h3>
+            <p>A complete single-story home using walls, doors, windows, floors, and a hip roof — great starting point for residential projects.</p>
             <div class="demo-tags">
               <span class="tag">Beginner</span>
-              <span class="tag">Geometry</span>
+              <span class="tag">Architecture</span>
             </div>
             <div class="demo-actions">
-              <!-- Replace href with actual .zip/.obj file URL -->
-              <a href="demos/geometric-sculpture.zip" class="btn-sm btn-sm-primary" download>↓ Download</a>
+              <a href="demos/residential-plan.json" class="btn-sm btn-sm-primary" download>↓ Download</a>
               <a href="#" class="btn-sm btn-sm-ghost">Preview</a>
             </div>
           </div>
         </div>
 
-        <!-- DEMO CARD 2 -->
         <div class="demo-card reveal">
           <div class="demo-thumb" style="font-size:3.5rem">
             <span>🏛️</span>
           </div>
           <div class="demo-info">
-            <h3>Architectural Arch</h3>
-            <p>Roman arch scene demonstrating precise measurements, mirroring, and boolean operations.</p>
+            <h3>Arched Facade</h3>
+            <p>Demonstrates boolean subtract, fillet on columns, and Face Circle tools to create a classical arched building facade.</p>
             <div class="demo-tags">
               <span class="tag">Intermediate</span>
-              <span class="tag">Architecture</span>
+              <span class="tag">Boolean Ops</span>
             </div>
             <div class="demo-actions">
-              <a href="demos/arch-scene.zip" class="btn-sm btn-sm-primary" download>↓ Download</a>
+              <a href="demos/arched-facade.json" class="btn-sm btn-sm-primary" download>↓ Download</a>
               <a href="#" class="btn-sm btn-sm-ghost">Preview</a>
             </div>
           </div>
         </div>
 
-        <!-- DEMO CARD 3 -->
         <div class="demo-card reveal">
           <div class="demo-thumb" style="font-size:3.5rem">
-            <span>🚀</span>
+            <span>🌆</span>
           </div>
           <div class="demo-info">
-            <h3>Sci-Fi Spacecraft</h3>
-            <p>Hard-surface modeling showcase with panel details, greebles, and export-ready geometry for game engines.</p>
+            <h3>Site with Solar Study</h3>
+            <p>Multi-building site massing with saved camera views and a solar position setup showing shadow angles at noon in June.</p>
             <div class="demo-tags">
               <span class="tag">Advanced</span>
-              <span class="tag">Hard-Surface</span>
+              <span class="tag">Solar / Camera</span>
             </div>
             <div class="demo-actions">
-              <a href="demos/spacecraft.zip" class="btn-sm btn-sm-primary" download>↓ Download</a>
+              <a href="demos/solar-site-study.json" class="btn-sm btn-sm-primary" download>↓ Download</a>
               <a href="#" class="btn-sm btn-sm-ghost">Preview</a>
             </div>
           </div>
@@ -864,7 +1202,7 @@
           <h2 class="section-title">Learn the app.</h2>
         </div>
         <p class="section-desc" style="text-align:right">
-          Everything you need to get started, go deeper, and get unstuck.
+          Guides, references, and a full tool index — everything in one place.
         </p>
       </div>
       <div class="docs-grid">
@@ -872,43 +1210,43 @@
         <a href="docs/getting-started.html" class="doc-card reveal">
           <div class="doc-icon">🚀</div>
           <h3>Getting Started</h3>
-          <p>Install the app and build your first 3D model in under 10 minutes. A complete beginner walkthrough.</p>
+          <p>Download the HTML file, open it in Chrome/Firefox/Edge/Safari, and draw your first wall in under 5 minutes. No install needed.</p>
           <span class="doc-link">Read guide →</span>
         </a>
 
-        <a href="docs/interface-overview.html" class="doc-card reveal">
-          <div class="doc-icon">🖥️</div>
-          <h3>Interface Overview</h3>
-          <p>A tour of every panel, toolbar, and viewport control so you always know where to find what you need.</p>
+        <a href="docs/draw-tools.html" class="doc-card reveal">
+          <div class="doc-icon">✏️</div>
+          <h3>Draw Tools</h3>
+          <p>All 19 draw tools with keyboard shortcuts — walls, doors, windows, floors, roofs, shapes, and the new Sphere and Dome primitives.</p>
           <span class="doc-link">Read guide →</span>
         </a>
 
-        <a href="docs/tools-reference.html" class="doc-card reveal">
+        <a href="docs/transform-tools.html" class="doc-card reveal">
           <div class="doc-icon">🔧</div>
-          <h3>Tools Reference</h3>
-          <p>Full reference for every modeling tool — what it does, how to use it, and keyboard shortcuts.</p>
+          <h3>Transform Tools</h3>
+          <p>Move, Copy, Mirror, Rotate, Scale, Stretch, Extrude, Boolean Union/Subtract, and the new Chamfer and Fillet edge tools.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/camera-system.html" class="doc-card reveal">
+          <div class="doc-icon">📷</div>
+          <h3>Camera System</h3>
+          <p>Save and recall named camera views. Drag frustum cone handles to reposition cameras live. Cycle lens from Wide (90°) to Normal (50°) to Tele (20°).</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/lighting-sky.html" class="doc-card reveal">
+          <div class="doc-icon">☀️</div>
+          <h3>Lighting &amp; Sky</h3>
+          <p>Configure ambient, sun, and fill lights. Use the Solar Position tool for real sun angles by region, month, and time. Upload a panoramic image as a sky dome.</p>
           <span class="doc-link">Read guide →</span>
         </a>
 
         <a href="docs/exporting.html" class="doc-card reveal">
           <div class="doc-icon">📦</div>
-          <h3>Exporting Your Work</h3>
-          <p>How to export to OBJ, STL, GLTF, and more. Compatible with game engines, 3D printers, and design tools.</p>
+          <h3>Export &amp; Save</h3>
+          <p>Export to DXF, OBJ, 3DS, PDF, or PNG. Save your full scene as a .json file — objects, lighting, and all camera views reload exactly.</p>
           <span class="doc-link">Read guide →</span>
-        </a>
-
-        <a href="docs/faq.html" class="doc-card reveal">
-          <div class="doc-icon">❓</div>
-          <h3>FAQ</h3>
-          <p>Answers to the most common questions about installation, file formats, performance, and known issues.</p>
-          <span class="doc-link">Read guide →</span>
-        </a>
-
-        <a href="https://github.com/YOUR_USERNAME/ai-architek/issues" target="_blank" class="doc-card reveal">
-          <div class="doc-icon">🐛</div>
-          <h3>Report an Issue</h3>
-          <p>Found a bug or have a feature request? Open an issue on GitHub and I'll take a look.</p>
-          <span class="doc-link">Open GitHub →</span>
         </a>
 
       </div>
@@ -1015,6 +1353,14 @@
 
   <!-- ── SCRIPTS ── -->
   <script>
+    // Tools tab switching
+    function showTab(btn, id) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tool-table').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
+
     // ── Replace YOUR_USERNAME with your GitHub username ──────
     const GITHUB_USERNAME = 'YOUR_USERNAME';
     const GITHUB_REPO     = 'ai-architek';
