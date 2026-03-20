@@ -1567,7 +1567,7 @@
     }
 
     // ── AIRTABLE GALLERY ──────────────────────────────────
-    const AT_TOKEN = 'patDqENTXKUN8HCIS.24c3faac9876c9a3c88371e189c5f83808d0791196ecee6d4d2a995a8d5937cf';
+    const AT_TOKEN = 'patw7d2sZksIRqt0D.bb91bcbe71c83bef577c6c81c4f57c851eec9df4014e13dc0683e3c9cc659f43';
     const AT_BASE  = 'appeds73VVqOiOMzo';
     const AT_TABLE = 'Gallery';
 
@@ -1575,7 +1575,7 @@
       const grid = document.getElementById('gallery-grid');
       try {
         const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}` +
-                    `?filterByFormula={Approved}=TRUE()&sort[0][field]=Created&sort[0][direction]=desc`;
+                    `?filterByFormula={Approve}=TRUE()&sort[0][field]=Created&sort[0][direction]=desc`;
         const res  = await fetch(url, { headers: { Authorization: `Bearer ${AT_TOKEN}` } });
         const data = await res.json();
 
@@ -1593,7 +1593,7 @@
 
         grid.innerHTML = data.records.map(r => {
           const f   = r.fields;
-          const img = f.Image && f.Image[0] ? f.Image[0].url : null;
+          const img = f.Attachments && f.Attachments[0] ? f.Attachments[0].url : null;
           const name = f.Name        || 'Anonymous';
           const desc = f.Description || '';
           const tag  = f.Tag         || 'AI-Architek';
