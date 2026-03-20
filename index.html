@@ -29,6 +29,7 @@
       overflow-x: hidden;
     }
 
+    /* ── GRID BACKGROUND ── */
     body::before {
       content: '';
       position: fixed;
@@ -41,6 +42,7 @@
       z-index: 0;
     }
 
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -65,7 +67,11 @@
 
     .logo span { color: var(--text); }
 
-    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
 
     nav a {
       color: var(--muted);
@@ -78,6 +84,7 @@
 
     nav a:hover { color: var(--accent); }
 
+    /* ── HERO ── */
     .hero {
       position: relative;
       z-index: 1;
@@ -134,7 +141,10 @@
       animation: fadeDown 0.7s ease 0.1s both;
     }
 
-    h1 em { font-style: normal; color: var(--accent); }
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
 
     .hero-sub {
       max-width: 520px;
@@ -202,6 +212,7 @@
       transform: translateY(-2px);
     }
 
+    /* download count chip */
     .dl-count {
       margin-top: 2rem;
       font-size: 0.75rem;
@@ -209,8 +220,12 @@
       animation: fadeDown 0.7s ease 0.4s both;
     }
 
-    .dl-count strong { color: var(--accent); font-size: 1rem; }
+    .dl-count strong {
+      color: var(--accent);
+      font-size: 1rem;
+    }
 
+    /* ── WIREFRAME 3D decoration ── */
     .wireframe {
       position: absolute;
       right: -80px; top: 50%;
@@ -225,9 +240,17 @@
       to   { transform: translateY(-50%) rotate(360deg); }
     }
 
-    section { position: relative; z-index: 1; }
+    /* ── SECTIONS COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
     .section-label {
       font-size: 0.7rem;
@@ -245,98 +268,636 @@
       margin-bottom: 1rem;
     }
 
-    .section-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; max-width: 480px; }
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 480px;
+    }
 
-    /* APP PREVIEW */
-    #preview { position: relative; z-index: 1; padding: 0 2rem 8rem; }
-    .preview-wrap { max-width: 1100px; margin: 0 auto; position: relative; }
-    .preview-label { text-align: center; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
-    .preview-frame { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 0 80px rgba(0,229,255,0.07), 0 40px 80px rgba(0,0,0,0.6); position: relative; }
-    .preview-frame::before { content: ''; position: absolute; inset: 0; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(0,229,255,0.1); pointer-events: none; z-index: 2; }
-    .preview-bar { background: #0e1117; padding: 0.65rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--border); }
-    .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .preview-bar-url { flex: 1; background: var(--surface); border-radius: 5px; padding: 0.3rem 0.75rem; font-size: 0.7rem; color: var(--muted); margin: 0 0.75rem; }
-    .preview-frame img { width: 100%; display: block; }
+    /* ── APP PREVIEW ── */
+    #preview {
+      position: relative;
+      z-index: 1;
+      padding: 0 2rem 8rem;
+    }
 
-    /* FEATURES */
-    #features { padding: 8rem 0; }
-    .features-header { margin-bottom: 4rem; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .feature-card { background: var(--card); padding: 2.5rem; transition: background 0.2s; }
+    .preview-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .preview-label {
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .preview-frame {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 0 80px rgba(0,229,255,0.07), 0 40px 80px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .preview-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 1px rgba(0,229,255,0.1);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* fake browser chrome bar */
+    .preview-bar {
+      background: #0e1117;
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .preview-bar-url {
+      flex: 1;
+      background: var(--surface);
+      border-radius: 5px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin: 0 0.75rem;
+    }
+
+    .preview-frame img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      padding: 8rem 0;
+    }
+
+    .features-header {
+      margin-bottom: 4rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--card);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+
     .feature-card:hover { background: #161b22; }
-    .feature-icon { font-size: 2rem; margin-bottom: 1.2rem; }
-    .feature-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; }
-    .feature-card p { color: var(--muted); font-size: 0.82rem; line-height: 1.7; }
 
-    /* WHAT'S NEW */
-    #whats-new { padding: 8rem 0; border-top: 1px solid var(--border); }
-    .new-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .new-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-    .new-card { border: 1px solid rgba(0,229,255,0.2); border-radius: 10px; padding: 1.5rem; background: rgba(0,229,255,0.03); display: flex; gap: 1rem; align-items: flex-start; }
-    .new-badge { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #000; background: var(--accent); padding: 0.2rem 0.5rem; border-radius: 3px; white-space: nowrap; margin-top: 0.15rem; flex-shrink: 0; }
-    .new-card h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
-    .new-card p { color: var(--muted); font-size: 0.78rem; line-height: 1.6; }
-    .kbd { display: inline-block; font-size: 0.68rem; padding: 0.1rem 0.45rem; border: 1px solid var(--border); border-radius: 4px; color: var(--accent); background: rgba(0,229,255,0.07); font-family: 'JetBrains Mono', monospace; margin-left: 0.3rem; }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
 
-    /* TOOLS */
-    #tools { padding: 8rem 0; border-top: 1px solid var(--border); }
-    .tools-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .tab-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 1.1rem; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.2s; }
-    .tab-btn:hover, .tab-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.05); }
-    .tool-table { width: 100%; border-collapse: collapse; display: none; }
+    .feature-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    /* ── DEMOS ── */
+    #demos {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .demos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .demo-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--card);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .demo-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated wireframe bg in demo cards */
+    .demo-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.06) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .demo-thumb span { position: relative; z-index: 1; }
+
+    .demo-info {
+      padding: 1.5rem;
+    }
+
+    .demo-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .demo-info p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .demo-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-sm {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-sm-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-sm-primary:hover { background: #fff; }
+
+    .btn-sm-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .btn-sm-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+    /* ── DOWNLOAD SECTION ── */
+    #download {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .download-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 4rem;
+      background: var(--card);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .download-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .download-box p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .version-info {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .v-item label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .v-item span {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .os-tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .os-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .os-btn:hover, .os-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+    }
+
+    .os-btn span { font-size: 1.5rem; }
+
+    /* ── WHAT'S NEW ── */
+    #whats-new {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .new-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .new-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .new-card {
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      background: rgba(0,229,255,0.03);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .new-badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--accent);
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .new-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    .new-card p {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    /* keyboard shortcut pill */
+    .kbd {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 0.1rem 0.45rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent);
+      background: rgba(0,229,255,0.07);
+      font-family: 'JetBrains Mono', monospace;
+      margin-left: 0.3rem;
+    }
+
+    /* ── TOOLS QUICK REF ── */
+    #tools {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .tools-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+    }
+
+    .tool-table {
+      width: 100%;
+      border-collapse: collapse;
+      display: none;
+    }
+
     .tool-table.active { display: table; }
-    .tool-table th { text-align: left; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
-    .tool-table td { padding: 0.75rem 1rem; font-size: 0.8rem; border-bottom: 1px solid rgba(30,37,48,0.6); vertical-align: top; line-height: 1.5; }
+
+    .tool-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tool-table td {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(30,37,48,0.6);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
     .tool-table tr:hover td { background: rgba(0,229,255,0.02); }
+
     .tool-table td:first-child { color: var(--text); font-weight: 500; }
     .tool-table td:nth-child(2) { color: var(--accent); width: 60px; text-align: center; }
     .tool-table td:last-child { color: var(--muted); }
-    .new-pill { font-size: 0.6rem; background: var(--accent); color: #000; padding: 0.1rem 0.4rem; border-radius: 3px; margin-left: 0.4rem; vertical-align: middle; letter-spacing: 0.05em; }
 
-    /* DOCS */
-    #docs { padding: 8rem 0; border-top: 1px solid var(--border); }
-    .docs-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .doc-card { border: 1px solid var(--border); border-radius: 10px; padding: 2rem; background: var(--card); display: flex; flex-direction: column; gap: 0.75rem; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; }
-    .doc-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .doc-icon { font-size: 1.8rem; }
-    .doc-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .doc-card p { color: var(--muted); font-size: 0.8rem; line-height: 1.6; flex: 1; }
-    .doc-link { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.5rem; }
+    .new-pill {
+      font-size: 0.6rem;
+      background: var(--accent);
+      color: #000;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      letter-spacing: 0.05em;
+    }
 
-    /* DOWNLOAD */
-    #download { padding: 8rem 0; border-top: 1px solid var(--border); }
-    .download-box { border: 1px solid var(--border); border-radius: 16px; padding: 4rem; background: var(--card); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .download-box h2 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; }
-    .download-box p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; margin-bottom: 2rem; }
-    .version-info { display: flex; gap: 2rem; margin-top: 1.5rem; }
-    .v-item label { display: block; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
-    .v-item span { font-size: 0.88rem; color: var(--text); }
+    /* ── DONATE ── */
+    #donate {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
 
-    /* DONATE */
-    #donate { padding: 8rem 0; border-top: 1px solid var(--border); }
-    .donate-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+    .donate-inner {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
     .donate-inner .section-label { justify-content: center; display: flex; }
+
     .donate-inner .section-title { text-align: center; }
-    .donate-inner p { color: var(--muted); font-size: 0.88rem; line-height: 1.8; margin-bottom: 2.5rem; }
-    .donate-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-donate { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.8rem; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.2s; cursor: pointer; border: none; }
-    .btn-venmo { background: #008CFF; color: #fff; }
+
+    .donate-inner p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .donate-options {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-donate {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-venmo {
+      background: #008CFF;
+      color: #fff;
+    }
+
     .btn-venmo:hover { background: #339dff; transform: translateY(-2px); }
 
-    /* FOOTER */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: #b0bac8; font-size: 0.75rem; }
-    footer a { color: #b0bac8; text-decoration: none; }
+    /* ── DOCS ── */
+    #docs {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .docs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .doc-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .doc-icon {
+      font-size: 1.8rem;
+    }
+
+    .doc-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .doc-card p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .doc-link {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--accent); }
 
+    /* ── ANIMATIONS ── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       nav ul { display: none; }
@@ -347,6 +908,7 @@
 </head>
 <body>
 
+  <!-- ── NAV ── -->
   <nav>
     <a href="#" class="logo">AI-<span>Architek</span></a>
     <ul>
@@ -359,8 +921,11 @@
     </ul>
   </nav>
 
+  <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-glow"></div>
+
+    <!-- Decorative wireframe cube SVG -->
     <svg class="wireframe" width="500" height="500" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="40" y="40" width="120" height="120" stroke="#00e5ff" stroke-width="1"/>
       <rect x="60" y="20" width="120" height="120" stroke="#00e5ff" stroke-width="1"/>
@@ -369,19 +934,26 @@
       <line x1="40" y1="160" x2="60" y2="140" stroke="#00e5ff" stroke-width="1"/>
       <line x1="160" y1="160" x2="180" y2="140" stroke="#00e5ff" stroke-width="1"/>
     </svg>
+
     <div class="hero-badge">Version 6 — Now Available</div>
     <h1><em>AI-Architek</em><br/>V6</h1>
-    <p class="hero-sub">A browser-based 3D architectural CAD tool. No installation, no plugins — just open the HTML file and start building. All tools, all exports, fully offline.</p>
+    <p class="hero-sub">
+      A browser-based 3D architectural CAD tool. No installation, no plugins — just open the HTML file and start building. All tools, all exports, fully offline.
+    </p>
     <div class="hero-actions">
-      <a href="#download" class="btn-primary">↓ Download Free</a>
-      <a href="#tools" class="btn-secondary">View All Tools →</a>
+      <a href="#download" class="btn-primary">
+        ↓ Download Free
+      </a>
+      <a href="#tools" class="btn-secondary">
+        View All Tools →
+      </a>
     </div>
     <div class="dl-count">
       <strong id="hero-dl-count">—</strong> downloads and counting
     </div>
   </section>
 
-  <!-- APP PREVIEW -->
+  <!-- ── APP PREVIEW ── -->
   <section id="preview">
     <div class="preview-wrap">
       <p class="preview-label reveal">// AI-Architek V6 in action</p>
@@ -397,7 +969,7 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- ── FEATURES ── -->
   <section id="features">
     <div class="container">
       <div class="features-header reveal">
@@ -406,17 +978,41 @@
         <p class="section-desc">18+ draw tools, full transform suite, real exports — runs entirely in your browser. No install. No account. No internet after download.</p>
       </div>
       <div class="features-grid reveal">
-        <div class="feature-card"><div class="feature-icon">🏗️</div><h3>Architectural Draw Tools</h3><p>Walls, doors, windows, floors, ceilings, roofs, and 10+ shape primitives including spheres, domes, and cones — all with keyboard shortcuts.</p></div>
-        <div class="feature-card"><div class="feature-icon">📐</div><h3>Precision Transforms</h3><p>3-step Move &amp; Copy, Mirror, Rotate (X/Y/Z axis), Scale, Stretch, Extrude Face, Boolean Union/Subtract, Chamfer, and Fillet on any edge.</p></div>
-        <div class="feature-card"><div class="feature-icon">📷</div><h3>Named Camera System</h3><p>Save unlimited named camera views. Interactive frustum cones let you drag eye/target points directly in the scene. Per-camera lens cycling and visibility toggle.</p></div>
-        <div class="feature-card"><div class="feature-icon">🎯</div><h3>Smart Snapping</h3><p>Endpoint, midpoint, grid, and angle snapping with a generous 50px threshold. Vertical snap in elevation views with ortho-axis constraint to prevent depth drift.</p></div>
-        <div class="feature-card"><div class="feature-icon">☀️</div><h3>Solar Lighting &amp; Sky</h3><p>Real azimuth/elevation calculations for 14 regions by month and time of day. Upload any panoramic JPG/PNG as a sky dome — shows in elevation views too.</p></div>
-        <div class="feature-card"><div class="feature-icon">📦</div><h3>5 Export Formats</h3><p>Export to DXF (Rhino-compatible), OBJ with normals, binary 3DS, PDF/PNG viewport capture, and native JSON for full scene save/reload.</p></div>
+        <div class="feature-card">
+          <div class="feature-icon">🏗️</div>
+          <h3>Architectural Draw Tools</h3>
+          <p>Walls, doors, windows, floors, ceilings, roofs, and 10+ shape primitives including spheres, domes, and cones — all with keyboard shortcuts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3>Precision Transforms</h3>
+          <p>3-step Move &amp; Copy, Mirror, Rotate (X/Y/Z axis), Scale, Stretch, Extrude Face, Boolean Union/Subtract, Chamfer, and Fillet on any edge.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📷</div>
+          <h3>Named Camera System</h3>
+          <p>Save unlimited named camera views. Interactive frustum cones let you drag eye/target points directly in the scene. Per-camera lens cycling and visibility toggle.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Smart Snapping</h3>
+          <p>Endpoint, midpoint, grid, and angle snapping with a generous 50px threshold. Vertical snap in elevation views with ortho-axis constraint to prevent depth drift.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">☀️</div>
+          <h3>Solar Lighting & Sky</h3>
+          <p>Real azimuth/elevation calculations for 14 regions by month and time of day. Upload any panoramic JPG/PNG as a sky dome — shows in elevation views too.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>5 Export Formats</h3>
+          <p>Export to DXF (Rhino-compatible), OBJ with normals, binary 3DS, PDF/PNG viewport capture, and native JSON for full scene save/reload.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT'S NEW -->
+  <!-- ── WHAT'S NEW IN V6 ── -->
   <section id="whats-new">
     <div class="container">
       <div class="new-header reveal">
@@ -427,20 +1023,84 @@
         <p class="section-desc" style="text-align:right">Major additions since V3 — new shapes, camera system, sky, edge tools, and a full round of bug fixes.</p>
       </div>
       <div class="new-grid reveal">
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Sphere &amp; Dome <span class="kbd">E</span></h4><p>Full ellipsoid sphere with Y-axis height scaling, plus a dome primitive with a flat base cap — both fully extrudable and exportable.</p></div></div>
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Camera Frustum Cones</h4><p>Save named camera views with lens settings. Yellow wireframe cones show each camera's FOV in the scene — drag the eye or target spheres to reposition live.</p></div></div>
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Sky System</h4><p>Sky on/off toggle with color + horizon pickers. Upload any JPG/PNG panorama as a full sky dome — wraps equirectangularly and appears in all elevation views.</p></div></div>
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Chamfer &amp; Fillet</h4><p>Click any vertical edge and type a bevel distance (Chamfer) or arc radius (Fillet). Each corner can be filleted independently and all operations fully undo.</p></div></div>
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Left &amp; Back Views</h4><p>Two new elevation views completing the full 6-direction orthographic set alongside Front, Right, Top, and Iso.</p></div></div>
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Tumble Mode <span class="kbd">T</span></h4><p>Free spherical orbit around the model center — rotate to any angle including below the floor plane.</p></div></div>
-        <div class="new-card"><span class="new-badge">New</span><div><h4>Two-Pass Selection</h4><p>Exact geometry ray-cast first, then a 24px proximity fallback for thin or small objects — so you never miss a click on complex scenes.</p></div></div>
-        <div class="new-card"><span class="new-badge">Fixed</span><div><h4>Save/Load Position Bug</h4><p>Boolean and stretched objects now reload at correct XYZ positions. The previous double-Y-offset that moved objects on reload is resolved.</p></div></div>
-        <div class="new-card"><span class="new-badge">Fixed</span><div><h4>Copy &amp; Fillet Fixes</h4><p>Copy/mirror of stretched objects now clones live geometry. Fillet no longer overwrites previous fillets, and Chamfer/Fillet undo restores geometry instead of deleting the object.</p></div></div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Sphere &amp; Dome <span class="kbd">E</span></h4>
+            <p>Full ellipsoid sphere with Y-axis height scaling, plus a dome primitive with a flat base cap — both fully extrudable and exportable.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Camera Frustum Cones</h4>
+            <p>Save named camera views with lens settings. Yellow wireframe cones show each camera's FOV in the scene — drag the eye or target spheres to reposition live.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Sky System</h4>
+            <p>Sky on/off toggle with color + horizon pickers. Upload any JPG/PNG panorama as a full sky dome — it wraps equirectangularly and appears in all elevation views.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Chamfer &amp; Fillet</h4>
+            <p>Click any vertical edge and type a bevel distance (Chamfer) or arc radius (Fillet). Each corner can be filleted independently and all operations fully undo.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Left &amp; Back Views</h4>
+            <p>Two new elevation views — Left <span class="kbd">opposite of 6</span> and Back — completing the full 6-direction orthographic set alongside Front, Right, Top, and Iso.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Tumble Mode <span class="kbd">T</span></h4>
+            <p>Free spherical orbit around the model center — rotate to any angle including below the floor plane. Great for checking underside geometry.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Two-Pass Selection</h4>
+            <p>Exact geometry ray-cast first, then a 24px proximity fallback for thin or small objects — so you never miss a click on complex scenes.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Save/Load Position Bug</h4>
+            <p>Boolean and stretched objects now reload at correct XYZ positions. The previous double-Y-offset that moved objects on reload is resolved.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Copy &amp; Fillet Fixes</h4>
+            <p>Copy/mirror of stretched objects now clones live geometry. Fillet no longer overwrites previous fillets, and Chamfer/Fillet undo restores geometry instead of deleting the object.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- TOOLS -->
+  <!-- ── TOOLS QUICK REFERENCE ── -->
   <section id="tools">
     <div class="container">
       <div class="reveal" style="margin-bottom:3rem">
@@ -448,12 +1108,15 @@
         <h2 class="section-title">All tools.</h2>
         <p class="section-desc">Every tool in AI-Architek V6 — with keyboard shortcuts and descriptions.</p>
       </div>
+
       <div class="tools-tabs reveal">
         <button class="tab-btn active" onclick="showTab(this,'tab-draw')">Draw Tools</button>
         <button class="tab-btn" onclick="showTab(this,'tab-transform')">Transform</button>
         <button class="tab-btn" onclick="showTab(this,'tab-views')">Views</button>
         <button class="tab-btn" onclick="showTab(this,'tab-export')">Export</button>
       </div>
+
+      <!-- DRAW TOOLS -->
       <table class="tool-table active" id="tab-draw">
         <thead><tr><th>Tool</th><th>Key</th><th>Description</th></tr></thead>
         <tbody>
@@ -478,6 +1141,8 @@
           <tr><td>Face Circle</td><td>H</td><td>Draw a circle directly on any face</td></tr>
         </tbody>
       </table>
+
+      <!-- TRANSFORM -->
       <table class="tool-table" id="tab-transform">
         <thead><tr><th>Tool</th><th>Key</th><th>Description</th></tr></thead>
         <tbody>
@@ -501,6 +1166,8 @@
           <tr><td>Undo / Redo</td><td>Ctrl+Z / Ctrl+Y</td><td>Full undo history — multi-object move/copy reverses all at once</td></tr>
         </tbody>
       </table>
+
+      <!-- VIEWS -->
       <table class="tool-table" id="tab-views">
         <thead><tr><th>View</th><th>Key</th><th>Description</th></tr></thead>
         <tbody>
@@ -522,6 +1189,8 @@
           <tr><td>Camera Cones <span class="new-pill">V6</span></td><td>—</td><td>Show/hide frustum cone for all saved cameras</td></tr>
         </tbody>
       </table>
+
+      <!-- EXPORT -->
       <table class="tool-table" id="tab-export">
         <thead><tr><th>Format</th><th>—</th><th>Notes</th></tr></thead>
         <tbody>
@@ -532,10 +1201,13 @@
           <tr><td>Native JSON</td><td>—</td><td>Full scene save: objects, rotation, lighting, all camera views</td></tr>
         </tbody>
       </table>
+
     </div>
   </section>
 
-  <!-- DOCS -->
+
+
+  <!-- ── DOCS ── -->
   <section id="docs">
     <div class="container">
       <div class="docs-header reveal">
@@ -543,72 +1215,148 @@
           <p class="section-label">// Documentation</p>
           <h2 class="section-title">Learn the app.</h2>
         </div>
-        <p class="section-desc" style="text-align:right">Guides, references, and a full tool index — everything in one place.</p>
+        <p class="section-desc" style="text-align:right">
+          Guides, references, and a full tool index — everything in one place.
+        </p>
       </div>
       <div class="docs-grid">
-        <a href="docs/getting-started.html" class="doc-card reveal"><div class="doc-icon">🚀</div><h3>Getting Started</h3><p>Download the HTML file, open it in Chrome/Firefox/Edge/Safari, and draw your first wall in under 5 minutes. No install needed.</p><span class="doc-link">Read guide →</span></a>
-        <a href="docs/draw-tools.html" class="doc-card reveal"><div class="doc-icon">✏️</div><h3>Draw Tools</h3><p>All 19 draw tools with keyboard shortcuts — walls, doors, windows, floors, roofs, shapes, and the new Sphere and Dome primitives.</p><span class="doc-link">Read guide →</span></a>
-        <a href="docs/transform-tools.html" class="doc-card reveal"><div class="doc-icon">🔧</div><h3>Transform Tools</h3><p>Move, Copy, Mirror, Rotate, Scale, Stretch, Extrude, Boolean Union/Subtract, and the new Chamfer and Fillet edge tools.</p><span class="doc-link">Read guide →</span></a>
-        <a href="docs/camera-system.html" class="doc-card reveal"><div class="doc-icon">📷</div><h3>Camera System</h3><p>Save and recall named camera views. Drag frustum cone handles to reposition cameras live. Cycle lens from Wide (90°) to Normal (50°) to Tele (20°).</p><span class="doc-link">Read guide →</span></a>
-        <a href="docs/lighting-sky.html" class="doc-card reveal"><div class="doc-icon">☀️</div><h3>Lighting &amp; Sky</h3><p>Configure ambient, sun, and fill lights. Use the Solar Position tool for real sun angles by region, month, and time. Upload a panoramic image as a sky dome.</p><span class="doc-link">Read guide →</span></a>
-        <a href="docs/exporting.html" class="doc-card reveal"><div class="doc-icon">📦</div><h3>Export &amp; Save</h3><p>Export to DXF, OBJ, 3DS, PDF, or PNG. Save your full scene as a .json file — objects, lighting, and all camera views reload exactly.</p><span class="doc-link">Read guide →</span></a>
+
+        <a href="docs/getting-started.html" class="doc-card reveal">
+          <div class="doc-icon">🚀</div>
+          <h3>Getting Started</h3>
+          <p>Download the HTML file, open it in Chrome/Firefox/Edge/Safari, and draw your first wall in under 5 minutes. No install needed.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/draw-tools.html" class="doc-card reveal">
+          <div class="doc-icon">✏️</div>
+          <h3>Draw Tools</h3>
+          <p>All 19 draw tools with keyboard shortcuts — walls, doors, windows, floors, roofs, shapes, and the new Sphere and Dome primitives.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/transform-tools.html" class="doc-card reveal">
+          <div class="doc-icon">🔧</div>
+          <h3>Transform Tools</h3>
+          <p>Move, Copy, Mirror, Rotate, Scale, Stretch, Extrude, Boolean Union/Subtract, and the new Chamfer and Fillet edge tools.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/camera-system.html" class="doc-card reveal">
+          <div class="doc-icon">📷</div>
+          <h3>Camera System</h3>
+          <p>Save and recall named camera views. Drag frustum cone handles to reposition cameras live. Cycle lens from Wide (90°) to Normal (50°) to Tele (20°).</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/lighting-sky.html" class="doc-card reveal">
+          <div class="doc-icon">☀️</div>
+          <h3>Lighting &amp; Sky</h3>
+          <p>Configure ambient, sun, and fill lights. Use the Solar Position tool for real sun angles by region, month, and time. Upload a panoramic image as a sky dome.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/exporting.html" class="doc-card reveal">
+          <div class="doc-icon">📦</div>
+          <h3>Export &amp; Save</h3>
+          <p>Export to DXF, OBJ, 3DS, PDF, or PNG. Save your full scene as a .json file — objects, lighting, and all camera views reload exactly.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
       </div>
     </div>
   </section>
 
-  <!-- DOWNLOAD -->
+  <!-- ── DOWNLOAD ── -->
   <section id="download">
     <div class="container">
       <div class="download-box reveal">
         <div>
           <p class="section-label">// Get the app</p>
           <h2>Download<br/>for free.</h2>
-          <p>AI-Architek is a single HTML file — no installation needed. Just download, open in your browser, and start building. Works on Windows, Mac, and Linux.</p>
+          <p>
+            AI-Architek is a single HTML file — no installation needed.
+            Just download, open in your browser, and start building.
+            Works on Windows, Mac, and Linux.
+          </p>
           <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
             ↓ Download aiarchitekV6.html
           </a>
           <div class="version-info">
-            <div class="v-item"><label>Version</label><span id="version-label">v6.0.0</span></div>
-            <div class="v-item"><label>Released</label><span id="release-date">—</span></div>
-            <div class="v-item"><label>Downloads</label><span id="dl-count-section">—</span></div>
+            <div class="v-item">
+              <label>Version</label>
+              <span id="version-label">v1.0.0</span>
+            </div>
+            <div class="v-item">
+              <label>Released</label>
+              <span id="release-date">—</span>
+            </div>
+            <div class="v-item">
+              <label>Downloads</label>
+              <span id="dl-count-section">—</span>
+            </div>
           </div>
         </div>
         <div>
           <div style="border:1px solid var(--border); border-radius:8px; padding:2rem; background:var(--surface);">
             <p style="font-size:0.7rem; color:var(--muted); margin-bottom:1.2rem; text-transform:uppercase; letter-spacing:0.1em;">How to run it</p>
             <div style="display:flex; flex-direction:column; gap:1rem;">
-              <div style="display:flex; gap:1rem; align-items:flex-start;"><span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">1.</span><p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.html</code> to your computer</p></div>
-              <div style="display:flex; gap:1rem; align-items:flex-start;"><span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">2.</span><p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Find the file in your Downloads folder</p></div>
-              <div style="display:flex; gap:1rem; align-items:flex-start;"><span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">3.</span><p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Double-click it — it opens directly in Chrome, Firefox, Edge, or Safari</p></div>
-              <div style="display:flex; gap:1rem; align-items:flex-start;"><span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">4.</span><p style="font-size:0.82rem; color:var(--text); line-height:1.6;">No installation, no account, no internet required after download</p></div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">1.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.html</code> to your computer</p>
+              </div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">2.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Find the file in your Downloads folder</p>
+              </div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">3.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Double-click it — it opens directly in Chrome, Firefox, Edge, or Safari</p>
+              </div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">4.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">No installation, no account, no internet required after download</p>
+              </div>
             </div>
           </div>
-          <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">Need help? Check the <a href="docs/getting-started.html" style="color:var(--accent); text-decoration:none;">Getting Started guide →</a></p>
+          <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">
+            Need help? Check the 
+            <a href="docs/getting-started.html" style="color:var(--accent); text-decoration:none;">Getting Started guide →</a>
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DONATE -->
+  <!-- ── DONATE ── -->
   <section id="donate">
     <div class="container">
       <div class="donate-inner reveal">
         <p class="section-label">// Support the project</p>
         <h2 class="section-title">Keep it free.</h2>
-        <p>AI-Architek is free and always will be. If it's been useful to you, a small donation helps fund new features, bug fixes, and ongoing development. Every contribution is genuinely appreciated. 🙏</p>
+        <p>
+          AI-Architek is free and always will be. If it's been useful to you,
+          a small donation helps fund new features, bug fixes, and ongoing development.
+          Every contribution is genuinely appreciated. 🙏
+        </p>
         <div class="donate-options">
-          <a href="https://account.venmo.com/u/MikeHnastchenko" target="_blank" class="btn-donate btn-venmo">💙 Donate via Venmo</a>
+          <a href="https://account.venmo.com/u/MikeHnastchenko" target="_blank" class="btn-donate btn-venmo">
+            💙 Donate via Venmo
+          </a>
         </div>
-        <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">Venmo @MikeHnastchenko · or search manually in the Venmo app</p>
+        <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">
+          Venmo @MikeHnastchenko · or search manually in the Venmo app
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- DEMO + CONTACT -->
+  <!-- ── DEMO + CONTACT ── -->
   <section style="padding: 6rem 0; border-top: 1px solid var(--border); position:relative; z-index:1;">
     <div class="container">
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem; flex-wrap:wrap;">
 
+        <!-- Demo File -->
         <div class="reveal" style="border:1px solid var(--border); border-radius:12px; padding:2.5rem; background:var(--card);">
           <div style="font-size:2rem; margin-bottom:1rem;">🏗️</div>
           <p class="section-label">// Try it out</p>
@@ -616,19 +1364,23 @@
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Download a ready-made scene file to explore. Open AI-Architek, click <strong>Open</strong>, and load the file to see it in action.
           </p>
+          <!-- Replace href with your actual demo .json file URL -->
           <a href="https://github.com/architeketh/ai-architek/releases/latest/download/demo.aiarch" class="btn-primary" download>
             ↓ Download Demo File
           </a>
         </div>
 
+        <!-- Contact -->
         <div class="reveal" style="border:1px solid var(--border); border-radius:12px; padding:2.5rem; background:var(--card);">
           <div style="font-size:2rem; margin-bottom:1rem;">✉️</div>
           <p class="section-label">// Get in touch</p>
-          <h3 style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:0.75rem;">Bugs &amp; Features</h3>
+          <h3 style="font-family:'Syne',sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:0.75rem;">Bugs & Features</h3>
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Found a bug? Have an idea for a new feature? Send an email and I'll get back to you as soon as I can.
           </p>
-          <a href="/cdn-cgi/l/email-protection#6c0d1e0f0405180907420918042c0b010d0500420f0301" class="btn-primary">✉ <span class="__cf_email__" data-cfemail="e38291808b8a978688cd86978ba3848e828a8fcd808c8e">[email&#160;protected]</span></a>
+          <a href="mailto:architek.eth@gmail.com" class="btn-primary">
+            ✉ architek.eth@gmail.com
+          </a>
         </div>
 
       </div>
@@ -637,16 +1389,20 @@
 
   <footer>
     <p>
-      Built with ♥ ·
-      GitHub ·
-      <a href="docs/getting-started.html">Documentation</a> ·
-      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> ·
-      <a href="license.html">License</a>
+      Built with ♥ · 
+      <a href="https://github.com/architeketh/ai-architek" target="_blank">GitHub</a> · 
+      <a href="docs/getting-started.html">Documentation</a> · 
+      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> · 
+      <a href="https://github.com/architeketh/ai-architek/blob/main/LICENSE" target="_blank">License</a>
     </p>
-    <p style="margin-top:0.5rem; font-size:0.65rem; color:#8895a7">© 2025 AI-Architek. All rights reserved.</p>
+    <p style="margin-top:0.5rem; font-size:0.65rem; color:#3a4454">
+      © 2025 AI-Architek. All rights reserved.
+    </p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <!-- ── SCRIPTS ── -->
+  <script>
+    // Tools tab switching
     function showTab(btn, id) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tool-table').forEach(t => t.classList.remove('active'));
@@ -654,22 +1410,31 @@
       document.getElementById(id).classList.add('active');
     }
 
+    // ── Replace architeketh with your GitHub username ──────
     const GITHUB_USERNAME = 'architeketh';
     const GITHUB_REPO     = 'ai-architek';
+    // ─────────────────────────────────────────────────────────
 
+    // Fetch latest release info + download count from GitHub API
     async function loadReleaseInfo() {
       try {
         const res  = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`);
         const data = await res.json();
         if (!data.length) return;
+
         const latest = data[0];
         const totalDownloads = data.reduce((sum, release) =>
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
         );
-        document.getElementById('version-label').textContent    = latest.tag_name || 'v6.0.0';
-        document.getElementById('release-date').textContent     = new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+
+        // Version & date
+        document.getElementById('version-label').textContent    = latest.tag_name || 'v1.0.0';
+        document.getElementById('release-date').textContent     =
+          new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
         document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
         document.getElementById('hero-dl-count').textContent    = totalDownloads.toLocaleString();
+
+        // Find the HTML file asset and set download link
         if (latest.assets.length) {
           const htmlAsset = latest.assets.find(a => a.name.endsWith('.html')) || latest.assets[0];
           document.getElementById('main-download-btn').href = htmlAsset.browser_download_url;
@@ -679,4 +1444,15 @@
       }
     }
 
-    const obse
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Init
+    loadReleaseInfo();
+  </script>
+</body>
+</html>
