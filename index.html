@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YourApp — 3D Modeling Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0c0f;
+      --surface: #111418;
+      --border: #1e2530;
+      --accent: #00e5ff;
+      --accent2: #ff6b35;
+      --text: #e8edf5;
+      --muted: #6b7a8d;
+      --card: #13171e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10,12,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--text); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      background: rgba(0,229,255,0.05);
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.7s ease 0.1s both;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      animation: fadeDown 0.7s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown 0.7s ease 0.3s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0,229,255,0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      padding: 0.9rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* download count chip */
+    .dl-count {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      animation: fadeDown 0.7s ease 0.4s both;
+    }
+
+    .dl-count strong {
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    /* ── WIREFRAME 3D decoration ── */
+    .wireframe {
+      position: absolute;
+      right: -80px; top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.07;
+      pointer-events: none;
+      animation: spin 30s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: translateY(-50%) rotate(0deg); }
+      to   { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      padding: 8rem 0;
+    }
+
+    .features-header {
+      margin-bottom: 4rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--card);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: #161b22; }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    /* ── DEMOS ── */
+    #demos {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .demos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .demo-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--card);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .demo-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated wireframe bg in demo cards */
+    .demo-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.06) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .demo-thumb span { position: relative; z-index: 1; }
+
+    .demo-info {
+      padding: 1.5rem;
+    }
+
+    .demo-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .demo-info p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .demo-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-sm {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-sm-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-sm-primary:hover { background: #fff; }
+
+    .btn-sm-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .btn-sm-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+    /* ── DOWNLOAD SECTION ── */
+    #download {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .download-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 4rem;
+      background: var(--card);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .download-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .download-box p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .version-info {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .v-item label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .v-item span {
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .os-tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .os-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .os-btn:hover, .os-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+    }
+
+    .os-btn span { font-size: 1.5rem; }
+
+    /* ── DONATE ── */
+    #donate {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .donate-inner {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .donate-inner .section-label { justify-content: center; display: flex; }
+
+    .donate-inner .section-title { text-align: center; }
+
+    .donate-inner p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .donate-options {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-donate {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-kofi {
+      background: #ff5f5f;
+      color: #fff;
+    }
+
+    .btn-kofi:hover { background: #ff7a7a; transform: translateY(-2px); }
+
+    .btn-github-sponsor {
+      background: #6e40c9;
+      color: #fff;
+    }
+
+    .btn-github-sponsor:hover { background: #8a5cf7; transform: translateY(-2px); }
+
+    .btn-bmc {
+      background: #ffdd00;
+      color: #000;
+    }
+
+    .btn-bmc:hover { background: #ffe633; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .download-box { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+      .wireframe { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#" class="logo">Your<span>App</span></a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#demos">Demos</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#donate">Support</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+
+    <!-- Decorative wireframe cube SVG -->
+    <svg class="wireframe" width="500" height="500" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="40" y="40" width="120" height="120" stroke="#00e5ff" stroke-width="1"/>
+      <rect x="60" y="20" width="120" height="120" stroke="#00e5ff" stroke-width="1"/>
+      <line x1="40" y1="40" x2="60" y2="20" stroke="#00e5ff" stroke-width="1"/>
+      <line x1="160" y1="40" x2="180" y2="20" stroke="#00e5ff" stroke-width="1"/>
+      <line x1="40" y1="160" x2="60" y2="140" stroke="#00e5ff" stroke-width="1"/>
+      <line x1="160" y1="160" x2="180" y2="140" stroke="#00e5ff" stroke-width="1"/>
+    </svg>
+
+    <div class="hero-badge">Free & Open Source</div>
+    <h1>The <em>3D</em><br/>Modeling Studio</h1>
+    <p class="hero-sub">
+      A powerful, intuitive 3D modeling application built for artists, designers, and creators. Free to download. Built with passion.
+    </p>
+    <div class="hero-actions">
+      <a href="#download" class="btn-primary">
+        ↓ Download Free
+      </a>
+      <a href="#demos" class="btn-secondary">
+        View Demos →
+      </a>
+    </div>
+    <div class="dl-count">
+      <strong id="hero-dl-count">—</strong> downloads and counting
+    </div>
+  </section>
+
+  <!-- ── FEATURES ── -->
+  <section id="features">
+    <div class="container">
+      <div class="features-header reveal">
+        <p class="section-label">// What's inside</p>
+        <h2 class="section-title">Built for real work.</h2>
+        <p class="section-desc">Everything you need to bring your 3D ideas to life, without the bloat.</p>
+      </div>
+      <div class="features-grid reveal">
+        <div class="feature-card">
+          <div class="feature-icon">⬡</div>
+          <h3>Polygon Mesh Editing</h3>
+          <p>Full suite of mesh editing tools including extrude, bevel, loop cuts, and vertex manipulation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">◈</div>
+          <h3>Real-time Preview</h3>
+          <p>See your changes instantly with a live OpenGL viewport that keeps up with every edit.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⬢</div>
+          <h3>Export Anywhere</h3>
+          <p>Export to OBJ, FBX, STL, GLTF, and more. Compatible with every major pipeline.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">◉</div>
+          <h3>Procedural Tools</h3>
+          <p>Non-destructive modifiers let you experiment freely and iterate without losing your work.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">◎</div>
+          <h3>Lightweight</h3>
+          <p>Runs fast on modest hardware. No subscription. No cloud required. Just install and create.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⬦</div>
+          <h3>Open File Format</h3>
+          <p>Projects save in a readable format so your work is always yours — no lock-in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEMOS ── -->
+  <section id="demos">
+    <div class="container">
+      <div class="demos-header reveal">
+        <div>
+          <p class="section-label">// Project showcase</p>
+          <h2 class="section-title">Made with this app.</h2>
+        </div>
+        <p class="section-desc" style="text-align:right">
+          Download any project file and open it directly in the app to learn from it.
+        </p>
+      </div>
+
+      <div class="demos-grid">
+
+        <!-- DEMO CARD 1 — replace with your actual demo -->
+        <div class="demo-card reveal">
+          <div class="demo-thumb">
+            <span>🧊</span>
+          </div>
+          <div class="demo-info">
+            <h3>Geometric Sculpture</h3>
+            <p>A complex interlocking geometry piece showing procedural modifier stacking and subdivision surfaces.</p>
+            <div class="demo-tags">
+              <span class="tag">Beginner</span>
+              <span class="tag">Geometry</span>
+            </div>
+            <div class="demo-actions">
+              <!-- Replace href with actual .zip/.obj file URL -->
+              <a href="demos/geometric-sculpture.zip" class="btn-sm btn-sm-primary" download>↓ Download</a>
+              <a href="#" class="btn-sm btn-sm-ghost">Preview</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMO CARD 2 -->
+        <div class="demo-card reveal">
+          <div class="demo-thumb" style="font-size:3.5rem">
+            <span>🏛️</span>
+          </div>
+          <div class="demo-info">
+            <h3>Architectural Arch</h3>
+            <p>Roman arch scene demonstrating precise measurements, mirroring, and boolean operations.</p>
+            <div class="demo-tags">
+              <span class="tag">Intermediate</span>
+              <span class="tag">Architecture</span>
+            </div>
+            <div class="demo-actions">
+              <a href="demos/arch-scene.zip" class="btn-sm btn-sm-primary" download>↓ Download</a>
+              <a href="#" class="btn-sm btn-sm-ghost">Preview</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMO CARD 3 -->
+        <div class="demo-card reveal">
+          <div class="demo-thumb" style="font-size:3.5rem">
+            <span>🚀</span>
+          </div>
+          <div class="demo-info">
+            <h3>Sci-Fi Spacecraft</h3>
+            <p>Hard-surface modeling showcase with panel details, greebles, and export-ready geometry for game engines.</p>
+            <div class="demo-tags">
+              <span class="tag">Advanced</span>
+              <span class="tag">Hard-Surface</span>
+            </div>
+            <div class="demo-actions">
+              <a href="demos/spacecraft.zip" class="btn-sm btn-sm-primary" download>↓ Download</a>
+              <a href="#" class="btn-sm btn-sm-ghost">Preview</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DOWNLOAD ── -->
+  <section id="download">
+    <div class="container">
+      <div class="download-box reveal">
+        <div>
+          <p class="section-label">// Get the app</p>
+          <h2>Download<br/>for free.</h2>
+          <p>
+            The full app, no trial, no account needed. 
+            All features included. Updates are free forever.
+          </p>
+          <a href="#" id="main-download-btn" class="btn-primary" style="margin-bottom:0">
+            ↓ Download Latest Release
+          </a>
+          <div class="version-info">
+            <div class="v-item">
+              <label>Version</label>
+              <span id="version-label">v1.0.0</span>
+            </div>
+            <div class="v-item">
+              <label>Released</label>
+              <span id="release-date">—</span>
+            </div>
+            <div class="v-item">
+              <label>Downloads</label>
+              <span id="dl-count-section">—</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--muted); font-size:0.8rem; margin-bottom:1rem; text-transform:uppercase; letter-spacing:0.1em;">Choose your platform</p>
+          <div class="os-tabs">
+            <button class="os-btn active" onclick="setOS(this,'windows')">
+              <span>🪟</span> Windows
+            </button>
+            <button class="os-btn" onclick="setOS(this,'mac')">
+              <span>🍎</span> macOS
+            </button>
+            <button class="os-btn" onclick="setOS(this,'linux')">
+              <span>🐧</span> Linux
+            </button>
+          </div>
+          <div style="border:1px solid var(--border); border-radius:8px; padding:1.5rem; background:var(--surface);">
+            <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.1em;">System requirements</p>
+            <p id="sys-req" style="font-size:0.82rem; color:var(--text); line-height:1.7;">
+              Windows 10 or later · 4 GB RAM · OpenGL 3.3+
+            </p>
+          </div>
+          <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">
+            Having trouble? Check the 
+            <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/wiki" style="color:var(--accent); text-decoration:none;" target="_blank">installation guide →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DONATE ── -->
+  <section id="donate">
+    <div class="container">
+      <div class="donate-inner reveal">
+        <p class="section-label">// Support the project</p>
+        <h2 class="section-title">Keep it free.</h2>
+        <p>
+          This app is free and always will be. But if it's saved you time or helped 
+          your work, a small donation goes a long way toward new features, bug fixes, 
+          and keeping the lights on. Thank you. 🙏
+        </p>
+        <div class="donate-options">
+          <!-- Replace YOUR_KOFI_NAME with your Ko-fi username -->
+          <a href="https://ko-fi.com/YOUR_KOFI_NAME" target="_blank" class="btn-donate btn-kofi">
+            ☕ Ko-fi
+          </a>
+          <!-- Replace YOUR_USERNAME with your GitHub username -->
+          <a href="https://github.com/sponsors/YOUR_USERNAME" target="_blank" class="btn-donate btn-github-sponsor">
+            ♥ GitHub Sponsors
+          </a>
+          <!-- Replace YOUR_BMC_NAME with your Buy Me a Coffee username -->
+          <a href="https://buymeacoffee.com/YOUR_BMC_NAME" target="_blank" class="btn-donate btn-bmc">
+            ☕ Buy Me a Coffee
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>
+      Built with ♥ · 
+      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank">GitHub</a> · 
+      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues" target="_blank">Report a Bug</a> · 
+      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/LICENSE" target="_blank">License</a>
+    </p>
+    <p style="margin-top:0.5rem; font-size:0.65rem; color:#3a4454">
+      © 2025 YourApp. All rights reserved.
+    </p>
+  </footer>
+
+  <!-- ── SCRIPTS ── -->
+  <script>
+    // ── Replace these two values ──────────────────────────────
+    const GITHUB_USERNAME = 'YOUR_USERNAME';
+    const GITHUB_REPO     = 'YOUR_REPO';
+    // ─────────────────────────────────────────────────────────
+
+    // Fetch latest release info + download count from GitHub API
+    async function loadReleaseInfo() {
+      try {
+        const res  = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`);
+        const data = await res.json();
+        if (!data.length) return;
+
+        const latest = data[0];
+        const totalDownloads = data.reduce((sum, release) =>
+          sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
+        );
+
+        // Version & date
+        document.getElementById('version-label').textContent   = latest.tag_name || 'v1.0.0';
+        document.getElementById('release-date').textContent    =
+          new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+        document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
+        document.getElementById('hero-dl-count').textContent    = totalDownloads.toLocaleString();
+
+        // Set download link for the first asset
+        if (latest.assets.length) {
+          const win = latest.assets.find(a => a.name.toLowerCase().includes('win') || a.name.endsWith('.exe') || a.name.endsWith('.zip'));
+          const url = (win || latest.assets[0]).browser_download_url;
+          document.getElementById('main-download-btn').href = url;
+          window._assetsByOS = {
+            windows: latest.assets.find(a => a.name.match(/win|\.exe/i)),
+            mac:     latest.assets.find(a => a.name.match(/mac|darwin|\.dmg/i)),
+            linux:   latest.assets.find(a => a.name.match(/linux|\.AppImage|\.tar/i)),
+          };
+        }
+      } catch (e) {
+        console.log('GitHub API unavailable — using static fallback.');
+      }
+    }
+
+    // OS tab switching
+    const sysReqs = {
+      windows: 'Windows 10 or later · 4 GB RAM · OpenGL 3.3+',
+      mac:     'macOS 11 Big Sur or later · 4 GB RAM · Metal/OpenGL',
+      linux:   'Ubuntu 20.04+ / Debian · 4 GB RAM · OpenGL 3.3+',
+    };
+
+    function setOS(el, os) {
+      document.querySelectorAll('.os-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('sys-req').textContent = sysReqs[os];
+      if (window._assetsByOS && window._assetsByOS[os]) {
+        document.getElementById('main-download-btn').href =
+          window._assetsByOS[os].browser_download_url;
+      }
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Init
+    loadReleaseInfo();
+  </script>
+</body>
+</html>
