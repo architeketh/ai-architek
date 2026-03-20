@@ -1365,7 +1365,7 @@
             Download a ready-made scene file to explore. Open AI-Architek, click <strong>Open</strong>, and load the file to see it in action.
           </p>
           <!-- Replace href with your actual demo .json file URL -->
-          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/demo.arch" class="btn-primary" download>
+          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/demo-project.json" class="btn-primary" download>
             ↓ Download Demo File
           </a>
         </div>
@@ -1378,8 +1378,8 @@
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Found a bug? Have an idea for a new feature? Send an email and I'll get back to you as soon as I can.
           </p>
-          <a href="/cdn-cgi/l/email-protection#aacbd8c9c2c3decfc184cfdec2eacdc7cbc3c684c9c5c7" class="btn-primary">
-            ✉ <span class="__cf_email__" data-cfemail="11706372797865747a3f74657951767c70787d3f727e7c">[email&#160;protected]</span>
+          <a href="mailto:architek.eth@gmail.com" class="btn-primary">
+            ✉ architek.eth@gmail.com
           </a>
         </div>
 
@@ -1392,7 +1392,7 @@
       Built with ♥ · 
       <a href="https://github.com/architeketh/ai-architek" target="_blank">GitHub</a> · 
       <a href="docs/getting-started.html">Documentation</a> · 
-      <a href="/cdn-cgi/l/email-protection#49283b2a21203d2c22672c3d21092e24282025672a2624">Report a Bug</a> · 
+      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> · 
       <a href="https://github.com/architeketh/ai-architek/blob/main/LICENSE" target="_blank">License</a>
     </p>
     <p style="margin-top:0.5rem; font-size:0.65rem; color:#3a4454">
@@ -1401,7 +1401,7 @@
   </footer>
 
   <!-- ── SCRIPTS ── -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Tools tab switching
     function showTab(btn, id) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1445,4 +1445,14 @@
     }
 
     // Scroll reveal
-    const observer = new In
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Init
+    loadReleaseInfo();
+  </script>
+</body>
+</html>
