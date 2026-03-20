@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YourApp — 3D Modeling Studio</title>
+  <title>AI-Architek — 3D Modeling Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -578,26 +578,76 @@
       border: none;
     }
 
-    .btn-kofi {
-      background: #ff5f5f;
+    .btn-venmo {
+      background: #008CFF;
       color: #fff;
     }
 
-    .btn-kofi:hover { background: #ff7a7a; transform: translateY(-2px); }
+    .btn-venmo:hover { background: #339dff; transform: translateY(-2px); }
 
-    .btn-github-sponsor {
-      background: #6e40c9;
-      color: #fff;
+    /* ── DOCS ── */
+    #docs {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
     }
 
-    .btn-github-sponsor:hover { background: #8a5cf7; transform: translateY(-2px); }
-
-    .btn-bmc {
-      background: #ffdd00;
-      color: #000;
+    .docs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .btn-bmc:hover { background: #ffe633; transform: translateY(-2px); }
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .doc-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .doc-icon {
+      font-size: 1.8rem;
+    }
+
+    .doc-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .doc-card p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .doc-link {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -643,10 +693,11 @@
 
   <!-- ── NAV ── -->
   <nav>
-    <a href="#" class="logo">Your<span>App</span></a>
+    <a href="#" class="logo">AI-<span>Architek</span></a>
     <ul>
       <li><a href="#features">Features</a></li>
       <li><a href="#demos">Demos</a></li>
+      <li><a href="#docs">Docs</a></li>
       <li><a href="#download">Download</a></li>
       <li><a href="#donate">Support</a></li>
     </ul>
@@ -804,6 +855,66 @@
     </div>
   </section>
 
+  <!-- ── DOCS ── -->
+  <section id="docs">
+    <div class="container">
+      <div class="docs-header reveal">
+        <div>
+          <p class="section-label">// Documentation</p>
+          <h2 class="section-title">Learn the app.</h2>
+        </div>
+        <p class="section-desc" style="text-align:right">
+          Everything you need to get started, go deeper, and get unstuck.
+        </p>
+      </div>
+      <div class="docs-grid">
+
+        <a href="docs/getting-started.html" class="doc-card reveal">
+          <div class="doc-icon">🚀</div>
+          <h3>Getting Started</h3>
+          <p>Install the app and build your first 3D model in under 10 minutes. A complete beginner walkthrough.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/interface-overview.html" class="doc-card reveal">
+          <div class="doc-icon">🖥️</div>
+          <h3>Interface Overview</h3>
+          <p>A tour of every panel, toolbar, and viewport control so you always know where to find what you need.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/tools-reference.html" class="doc-card reveal">
+          <div class="doc-icon">🔧</div>
+          <h3>Tools Reference</h3>
+          <p>Full reference for every modeling tool — what it does, how to use it, and keyboard shortcuts.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/exporting.html" class="doc-card reveal">
+          <div class="doc-icon">📦</div>
+          <h3>Exporting Your Work</h3>
+          <p>How to export to OBJ, STL, GLTF, and more. Compatible with game engines, 3D printers, and design tools.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="docs/faq.html" class="doc-card reveal">
+          <div class="doc-icon">❓</div>
+          <h3>FAQ</h3>
+          <p>Answers to the most common questions about installation, file formats, performance, and known issues.</p>
+          <span class="doc-link">Read guide →</span>
+        </a>
+
+        <a href="https://github.com/YOUR_USERNAME/ai-architek/issues" target="_blank" class="doc-card reveal">
+          <div class="doc-icon">🐛</div>
+          <h3>Report an Issue</h3>
+          <p>Found a bug or have a feature request? Open an issue on GitHub and I'll take a look.</p>
+          <span class="doc-link">Open GitHub →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── DOWNLOAD ── -->
   <section id="download">
     <div class="container">
@@ -812,11 +923,12 @@
           <p class="section-label">// Get the app</p>
           <h2>Download<br/>for free.</h2>
           <p>
-            The full app, no trial, no account needed. 
-            All features included. Updates are free forever.
+            AI-Architek is a single HTML file — no installation needed.
+            Just download, open in your browser, and start building.
+            Works on Windows, Mac, and Linux.
           </p>
-          <a href="#" id="main-download-btn" class="btn-primary" style="margin-bottom:0">
-            ↓ Download Latest Release
+          <a href="ai-architek.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
+            ↓ Download ai-architek.html
           </a>
           <div class="version-info">
             <div class="v-item">
@@ -834,27 +946,30 @@
           </div>
         </div>
         <div>
-          <p style="color:var(--muted); font-size:0.8rem; margin-bottom:1rem; text-transform:uppercase; letter-spacing:0.1em;">Choose your platform</p>
-          <div class="os-tabs">
-            <button class="os-btn active" onclick="setOS(this,'windows')">
-              <span>🪟</span> Windows
-            </button>
-            <button class="os-btn" onclick="setOS(this,'mac')">
-              <span>🍎</span> macOS
-            </button>
-            <button class="os-btn" onclick="setOS(this,'linux')">
-              <span>🐧</span> Linux
-            </button>
-          </div>
-          <div style="border:1px solid var(--border); border-radius:8px; padding:1.5rem; background:var(--surface);">
-            <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.1em;">System requirements</p>
-            <p id="sys-req" style="font-size:0.82rem; color:var(--text); line-height:1.7;">
-              Windows 10 or later · 4 GB RAM · OpenGL 3.3+
-            </p>
+          <div style="border:1px solid var(--border); border-radius:8px; padding:2rem; background:var(--surface);">
+            <p style="font-size:0.7rem; color:var(--muted); margin-bottom:1.2rem; text-transform:uppercase; letter-spacing:0.1em;">How to run it</p>
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">1.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">ai-architek.html</code> to your computer</p>
+              </div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">2.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Find the file in your Downloads folder</p>
+              </div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">3.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Double-click it — it opens directly in Chrome, Firefox, Edge, or Safari</p>
+              </div>
+              <div style="display:flex; gap:1rem; align-items:flex-start;">
+                <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">4.</span>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">No installation, no account, no internet required after download</p>
+              </div>
+            </div>
           </div>
           <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">
-            Having trouble? Check the 
-            <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/wiki" style="color:var(--accent); text-decoration:none;" target="_blank">installation guide →</a>
+            Need help? Check the 
+            <a href="docs/getting-started.html" style="color:var(--accent); text-decoration:none;">Getting Started guide →</a>
           </p>
         </div>
       </div>
@@ -868,46 +983,41 @@
         <p class="section-label">// Support the project</p>
         <h2 class="section-title">Keep it free.</h2>
         <p>
-          This app is free and always will be. But if it's saved you time or helped 
-          your work, a small donation goes a long way toward new features, bug fixes, 
-          and keeping the lights on. Thank you. 🙏
+          AI-Architek is free and always will be. If it's been useful to you,
+          a small donation helps fund new features, bug fixes, and ongoing development.
+          Every contribution is genuinely appreciated. 🙏
         </p>
         <div class="donate-options">
-          <!-- Replace YOUR_KOFI_NAME with your Ko-fi username -->
-          <a href="https://ko-fi.com/YOUR_KOFI_NAME" target="_blank" class="btn-donate btn-kofi">
-            ☕ Ko-fi
-          </a>
-          <!-- Replace YOUR_USERNAME with your GitHub username -->
-          <a href="https://github.com/sponsors/YOUR_USERNAME" target="_blank" class="btn-donate btn-github-sponsor">
-            ♥ GitHub Sponsors
-          </a>
-          <!-- Replace YOUR_BMC_NAME with your Buy Me a Coffee username -->
-          <a href="https://buymeacoffee.com/YOUR_BMC_NAME" target="_blank" class="btn-donate btn-bmc">
-            ☕ Buy Me a Coffee
+          <!-- Replace YOUR_VENMO_USERNAME with your Venmo @username -->
+          <a href="https://venmo.com/YOUR_VENMO_USERNAME" target="_blank" class="btn-donate btn-venmo">
+            💙 Donate via Venmo
           </a>
         </div>
+        <p style="margin-top:1.5rem; font-size:0.75rem; color:var(--muted);">
+          Venmo @YOUR_VENMO_USERNAME · tap the button or search manually in the app
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <p>
       Built with ♥ · 
-      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank">GitHub</a> · 
-      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/issues" target="_blank">Report a Bug</a> · 
-      <a href="https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/LICENSE" target="_blank">License</a>
+      <a href="https://github.com/YOUR_USERNAME/ai-architek" target="_blank">GitHub</a> · 
+      <a href="docs/getting-started.html">Documentation</a> · 
+      <a href="https://github.com/YOUR_USERNAME/ai-architek/issues" target="_blank">Report a Bug</a> · 
+      <a href="https://github.com/YOUR_USERNAME/ai-architek/blob/main/LICENSE" target="_blank">License</a>
     </p>
     <p style="margin-top:0.5rem; font-size:0.65rem; color:#3a4454">
-      © 2025 YourApp. All rights reserved.
+      © 2025 AI-Architek. All rights reserved.
     </p>
   </footer>
 
   <!-- ── SCRIPTS ── -->
   <script>
-    // ── Replace these two values ──────────────────────────────
+    // ── Replace YOUR_USERNAME with your GitHub username ──────
     const GITHUB_USERNAME = 'YOUR_USERNAME';
-    const GITHUB_REPO     = 'YOUR_REPO';
+    const GITHUB_REPO     = 'ai-architek';
     // ─────────────────────────────────────────────────────────
 
     // Fetch latest release info + download count from GitHub API
@@ -923,42 +1033,19 @@
         );
 
         // Version & date
-        document.getElementById('version-label').textContent   = latest.tag_name || 'v1.0.0';
-        document.getElementById('release-date').textContent    =
+        document.getElementById('version-label').textContent    = latest.tag_name || 'v1.0.0';
+        document.getElementById('release-date').textContent     =
           new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
         document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
         document.getElementById('hero-dl-count').textContent    = totalDownloads.toLocaleString();
 
-        // Set download link for the first asset
+        // Find the HTML file asset and set download link
         if (latest.assets.length) {
-          const win = latest.assets.find(a => a.name.toLowerCase().includes('win') || a.name.endsWith('.exe') || a.name.endsWith('.zip'));
-          const url = (win || latest.assets[0]).browser_download_url;
-          document.getElementById('main-download-btn').href = url;
-          window._assetsByOS = {
-            windows: latest.assets.find(a => a.name.match(/win|\.exe/i)),
-            mac:     latest.assets.find(a => a.name.match(/mac|darwin|\.dmg/i)),
-            linux:   latest.assets.find(a => a.name.match(/linux|\.AppImage|\.tar/i)),
-          };
+          const htmlAsset = latest.assets.find(a => a.name.endsWith('.html')) || latest.assets[0];
+          document.getElementById('main-download-btn').href = htmlAsset.browser_download_url;
         }
       } catch (e) {
         console.log('GitHub API unavailable — using static fallback.');
-      }
-    }
-
-    // OS tab switching
-    const sysReqs = {
-      windows: 'Windows 10 or later · 4 GB RAM · OpenGL 3.3+',
-      mac:     'macOS 11 Big Sur or later · 4 GB RAM · Metal/OpenGL',
-      linux:   'Ubuntu 20.04+ / Debian · 4 GB RAM · OpenGL 3.3+',
-    };
-
-    function setOS(el, os) {
-      document.querySelectorAll('.os-btn').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('sys-req').textContent = sysReqs[os];
-      if (window._assetsByOS && window._assetsByOS[os]) {
-        document.getElementById('main-download-btn').href =
-          window._assetsByOS[os].browser_download_url;
       }
     }
 
