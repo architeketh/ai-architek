@@ -1575,9 +1575,10 @@
       const grid = document.getElementById('gallery-grid');
       try {
         const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}` +
-                    `?filterByFormula={Approve}=TRUE()&sort[0][field]=Created&sort[0][direction]=desc`;
+                    `?filterByFormula={Approve}=1`;
         const res  = await fetch(url, { headers: { Authorization: `Bearer ${AT_TOKEN}` } });
         const data = await res.json();
+        console.log('Airtable response:', JSON.stringify(data));
 
         if (!data.records || data.records.length === 0) {
           grid.innerHTML = `
