@@ -1567,7 +1567,7 @@
     }
 
     // ── AIRTABLE GALLERY ──────────────────────────────────
-    const AT_TOKEN = 'patw7d2sZksIRqt0D.bb91bcbe71c83bef577c6c81c4f57c851eec9df4014e13dc0683e3c9cc659f43';
+    const AT_TOKEN = 'patV3DGP66gfrBVFm.62ee1019a2dda1e0fc57e3cbeaedabcf909466fd40481910c7595f56a49a4b63';
     const AT_BASE  = 'appeds73VVqOiOMzo';
     const AT_TABLE = 'Gallery';
 
@@ -1604,7 +1604,9 @@
     }
 
     async function loadGallery() {
+      console.log('loadGallery started');
       const grid = document.getElementById('gallery-grid');
+      if (!grid) { console.error('gallery-grid element not found'); return; }
       try {
         const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}`;
         const res  = await fetch(url, {
