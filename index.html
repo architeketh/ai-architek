@@ -1583,7 +1583,7 @@
       }
       grid.innerHTML = approved.map(r => {
         const f    = r.fields;
-        const img  = f.Attachments && f.Attachments[0] ? f.Attachments[0].url : null;
+        const img  = f.LocalImage ? f.LocalImage : null;
         const name = f.Name        || 'Anonymous';
         const desc = f.Description || name;
         const tag  = f.Tag         || 'AI-Architek';
