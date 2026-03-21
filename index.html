@@ -1070,7 +1070,7 @@
           <div class="preview-dot" style="background:#ff5f57"></div>
           <div class="preview-dot" style="background:#febc2e"></div>
           <div class="preview-dot" style="background:#28c840"></div>
-          <div class="preview-bar-url">aiarchitekV6.html — AI Architek V6</div>
+          <div class="preview-bar-url">aiarchitekV6.1.0.html — AI Architek V6.1.0</div>
         </div>
         <img src="app-preview.png" alt="AI-Architek V6 interface showing 3D architectural scene with solar lighting, camera views, and transform tools" />
       </div>
@@ -1406,13 +1406,13 @@
             Just download, open in your browser, and start building.
             Works on Windows, Mac, and Linux.
           </p>
-          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
-            ↓ Download aiarchitekV6.html
+          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.1.0.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
+            ↓ Download aiarchitekV6.1.0.html
           </a>
           <div class="version-info">
             <div class="v-item">
               <label>Version</label>
-              <span id="version-label">v1.0.0</span>
+              <span id="version-label">v6.1.0</span>
             </div>
             <div class="v-item">
               <label>Released</label>
@@ -1430,7 +1430,7 @@
             <div style="display:flex; flex-direction:column; gap:1rem;">
               <div style="display:flex; gap:1rem; align-items:flex-start;">
                 <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">1.</span>
-                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.html</code> to your computer</p>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.1.0.html</code> to your computer</p>
               </div>
               <div style="display:flex; gap:1rem; align-items:flex-start;">
                 <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">2.</span>
@@ -1551,7 +1551,7 @@
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
         ) + 10;
 
-        document.getElementById('version-label').textContent    = latest.tag_name || 'v1.0.0';
+        document.getElementById('version-label').textContent    = latest.tag_name || 'v6.1.0';
         document.getElementById('release-date').textContent     =
           new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
         document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
