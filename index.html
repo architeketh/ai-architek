@@ -3,14 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com;
-    font-src https://fonts.gstatic.com;
-    connect-src 'self' https://api.airtable.com https://api.github.com;
-    img-src 'self' data: blob: https:;
-  "/>
   <title>AI-Architek — Browser-Based 3D Architectural CAD</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1579,50 +1571,59 @@
     const AT_BASE  = 'appeds73VVqOiOMzo';
     const AT_TABLE = 'Gallery';
 
-    async function loadGallery() {
+    function renderGallery(records) {
       const grid = document.getElementById('gallery-grid');
-      try {
-        const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}` +
-                    `?filterByFormula={Approve}=1`;
-        const res  = await fetch(url, { headers: { Authorization: `Bearer ${AT_TOKEN}` } });
-        const data = await res.json();
-        console.log('Airtable response:', JSON.stringify(data));
-
-        if (!data.records || data.records.length === 0) {
-          grid.innerHTML = `
-            <div class="gallery-empty">
-              <div class="empty-icon">🏛️</div>
-              <h3 style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem;">Be the first to be featured.</h3>
-              <p style="color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">
-                Submit your work using the button above and it'll appear here once approved.
-              </p>
-            </div>`;
-          return;
-        }
-
-        grid.innerHTML = data.records.map(r => {
-          const f   = r.fields;
-          const img = f.Attachments && f.Attachments[0] ? f.Attachments[0].url : null;
-          const name = f.Name        || 'Anonymous';
-          const desc = f.Description || '';
-          const tag  = f.Tag         || 'AI-Architek';
-          if (!img) return '';
-          return `
-            <div class="gallery-card">
-              <img class="gallery-img" src="${img}" alt="${desc || name}" loading="lazy" />
-              <div class="gallery-info">
-                <span class="gallery-author">${name}</span>
-                <span class="gallery-tag">${tag}</span>
-              </div>
-            </div>`;
-        }).join('');
-
-      } catch (e) {
+      const approved = records.filter(r => r.fields.Approve);
+      if (approved.length === 0) {
         grid.innerHTML = `
           <div class="gallery-empty">
             <div class="empty-icon">🏛️</div>
-            <h3 style="font-family:'Syne',sans-serif; font-weight:700; margin-bottom:0.5rem;">Be the first to be featured.</h3>
-            <p style="color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">Submit your work using the button above.</p>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:0.5rem;">Be the first to be featured.</h3>
+            <p style="color:var(--muted);font-size:0.85rem;margin-top:0.5rem;">
+              Submit your work using the button above and it'll appear here once approved.
+            </p>
+          </div>`;
+        return;
+      }
+      grid.innerHTML = approved.map(r => {
+        const f    = r.fields;
+        const img  = f.Attachments && f.Attachments[0] ? f.Attachments[0].url : null;
+        const name = f.Name        || 'Anonymous';
+        const desc = f.Description || name;
+        const tag  = f.Tag         || 'AI-Architek';
+        if (!img) return '';
+        return `
+          <div class="gallery-card">
+            <img class="gallery-img" src="${img}" alt="${desc}" loading="lazy" />
+            <div class="gallery-info">
+              <span class="gallery-author">${name}</span>
+              <span class="gallery-tag">${tag}</span>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    async function loadGallery() {
+      const grid = document.getElementById('gallery-grid');
+      try {
+        const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}`;
+        const res  = await fetch(url, {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${AT_TOKEN}` }
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        console.log('Airtable OK — records:', data.records ? data.records.length : 0, data);
+        renderGallery(data.records || []);
+      } catch(e) {
+        console.error('Airtable error:', e);
+        grid.innerHTML = `
+          <div class="gallery-empty">
+            <div class="empty-icon">🏛️</div>
+            <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:0.5rem;">Be the first to be featured.</h3>
+            <p style="color:var(--muted);font-size:0.85rem;margin-top:0.5rem;">
+              Submit your work using the button above.
+            </p>
           </div>`;
       }
     }
