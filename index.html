@@ -1549,7 +1549,7 @@
         const latest = data[0];
         const totalDownloads = data.reduce((sum, release) =>
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
-        );
+        ) + 10;
 
         document.getElementById('version-label').textContent    = latest.tag_name || 'v1.0.0';
         document.getElementById('release-date').textContent     =
