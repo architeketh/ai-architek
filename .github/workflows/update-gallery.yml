@@ -1,1 +1,35 @@
+name: Update Gallery
 
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # runs every 15 minutes
+  workflow_dispatch:           # lets you trigger it manually too
+
+jobs:
+  update-gallery:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch approved records from Airtable
+        env:
+          AT_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: |
+          curl -s \
+            -H "Authorization: Bearer $AT_TOKEN" \
+            "https://api.airtable.com/v0/appeds73VVqOiOMzo/Gallery" \
+            > gallery-data.json
+          echo "Fetched gallery data:"
+          cat gallery-data.json
+
+      - name: Commit gallery data if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gallery-data.json
+          git diff --staged --quiet || git commit -m "Update gallery data"
+          git push
