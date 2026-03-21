@@ -1566,11 +1566,7 @@
       }
     }
 
-    // ── AIRTABLE GALLERY ──────────────────────────────────
-    const AT_TOKEN = 'patwrMucJI5S2kXOO.609639e5cec43559f3f5ed8c9bafe2eb8d8c9b70b2868473a8f2b8fa41e9864e';
-    const AT_BASE  = 'appeds73VVqOiOMzo';
-    const AT_TABLE = 'Gallery';
-
+    // ── GALLERY — reads from gallery-data.json (no token needed) ──
     function renderGallery(records) {
       const grid = document.getElementById('gallery-grid');
       const approved = records.filter(r => r.fields.Approve);
@@ -1606,19 +1602,15 @@
     async function loadGallery() {
       console.log('loadGallery started');
       const grid = document.getElementById('gallery-grid');
-      if (!grid) { console.error('gallery-grid element not found'); return; }
+      if (!grid) return;
       try {
-        const url = `https://api.airtable.com/v0/${AT_BASE}/${encodeURIComponent(AT_TABLE)}`;
-        const res  = await fetch(url, {
-          method: 'GET',
-          headers: { 'Authorization': `Bearer ${AT_TOKEN}` }
-        });
+        const res  = await fetch('gallery-data.json');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        console.log('Airtable OK — records:', data.records ? data.records.length : 0, data);
+        console.log('Gallery data loaded — records:', data.records ? data.records.length : 0);
         renderGallery(data.records || []);
       } catch(e) {
-        console.error('Airtable error:', e);
+        console.error('Gallery load error:', e);
         grid.innerHTML = `
           <div class="gallery-empty">
             <div class="empty-icon">🏛️</div>
