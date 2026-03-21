@@ -2,8 +2,8 @@ name: Update Gallery
 
 on:
   schedule:
-    - cron: '*/15 * * * *'   # runs every 15 minutes
-  workflow_dispatch:           # lets you trigger it manually too
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
 
 jobs:
   update-gallery:
@@ -15,21 +15,73 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Fetch approved records from Airtable
+      - name: Fetch records and download images
         env:
           AT_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
         run: |
+          mkdir -p gallery
+
           curl -s \
             -H "Authorization: Bearer $AT_TOKEN" \
             "https://api.airtable.com/v0/appeds73VVqOiOMzo/Gallery" \
-            > gallery-data.json
-          echo "Fetched gallery data:"
-          cat gallery-data.json
+            > raw-airtable.json
 
-      - name: Commit gallery data if changed
+          echo "Raw Airtable data:"
+          cat raw-airtable.json
+
+          python3 << 'PYEOF'
+          import json, urllib.request, os, re
+
+          with open('raw-airtable.json') as f:
+              data = json.load(f)
+
+          output_records = []
+
+          for record in data.get('records', []):
+              fields = record.get('fields', {})
+              if not fields.get('Approve'):
+                  continue
+              attachments = fields.get('Attachments', [])
+              if not attachments:
+                  continue
+
+              att = attachments[0]
+              original_url = att.get('url', '')
+              filename_raw = att.get('filename', 'image.png')
+              safe_filename = re.sub(r'[^a-zA-Z0-9._-]', '_', filename_raw)
+              local_path = f"gallery/{record['id']}_{safe_filename}"
+
+              if not os.path.exists(local_path):
+                  print(f"Downloading: {filename_raw} -> {local_path}")
+                  try:
+                      urllib.request.urlretrieve(original_url, local_path)
+                  except Exception as e:
+                      print(f"Failed to download {filename_raw}: {e}")
+                      continue
+              else:
+                  print(f"Already exists: {local_path}")
+
+              output_records.append({
+                  'id': record['id'],
+                  'fields': {
+                      'Name': fields.get('Name', 'Anonymous'),
+                      'Description': fields.get('Description', ''),
+                      'Tag': fields.get('Tag', 'AI-Architek'),
+                      'Approve': True,
+                      'LocalImage': local_path
+                  }
+              })
+
+          with open('gallery-data.json', 'w') as f:
+              json.dump({'records': output_records}, f, indent=2)
+
+          print(f"Done — {len(output_records)} approved records saved.")
+          PYEOF
+
+      - name: Commit changes
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add gallery-data.json
-          git diff --staged --quiet || git commit -m "Update gallery data"
+          git add gallery/ gallery-data.json
+          git diff --staged --quiet || git commit -m "Update gallery images and data"
           git push
