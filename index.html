@@ -1021,7 +1021,7 @@
     <a href="#" class="logo">AI-<span>Architek</span></a>
     <ul>
       <li><a href="#features">Features</a></li>
-      <li><a href="#whats-new">V6 New</a></li>
+      <li><a href="#whats-new">V6.3 New</a></li>
       <li><a href="#tools">Tools</a></li>
       <li><a href="#docs">Docs</a></li>
       <li><a href="#gallery">Gallery</a></li>
@@ -1043,8 +1043,8 @@
       <line x1="160" y1="160" x2="180" y2="140" stroke="#00e5ff" stroke-width="1"/>
     </svg>
 
-    <div class="hero-badge">Version 6 — Now Available</div>
-    <h1><em>AI-Architek</em><br/>V6</h1>
+    <div class="hero-badge">Version 6.3 — Now Available</div>
+    <h1><em>AI-Architek</em><br/><span style="font-size:0.75em; letter-spacing:-2px;">V6.3</span></h1>
     <p class="hero-sub">
       A browser-based 3D architectural CAD tool. No installation, no plugins — just open the HTML file and start building. All tools, all exports, fully offline.
     </p>
@@ -1070,7 +1070,7 @@
           <div class="preview-dot" style="background:#ff5f57"></div>
           <div class="preview-dot" style="background:#febc2e"></div>
           <div class="preview-dot" style="background:#28c840"></div>
-          <div class="preview-bar-url">aiarchitekV6.2.html — AI Architek V6.2</div>
+          <div class="preview-bar-url">aiarchitekV6.3.html — AI Architek V6.3</div>
         </div>
         <img src="app-preview.png" alt="AI-Architek V6 interface showing 3D architectural scene with solar lighting, camera views, and transform tools" />
       </div>
@@ -1120,87 +1120,95 @@
     </div>
   </section>
 
-  <!-- ── WHAT'S NEW IN V6 ── -->
+  <!-- ── WHAT'S NEW IN V6.3 ── -->
   <section id="whats-new">
     <div class="container">
       <div class="new-header reveal">
         <div>
           <p class="section-label">// Changelog</p>
-          <h2 class="section-title">What's new in V6.</h2>
+          <h2 class="section-title">What's new in V6.3.</h2>
         </div>
-        <p class="section-desc" style="text-align:right">Major additions since V3 — new shapes, camera system, sky, edge tools, and a full round of bug fixes.</p>
+        <p class="section-desc" style="text-align:right">Major CAD upgrades — precision transforms, multi-select, elevation drawing, and a full UI overhaul.</p>
       </div>
       <div class="new-grid reveal">
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Sphere &amp; Dome <span class="kbd">E</span></h4>
-            <p>Full ellipsoid sphere with Y-axis height scaling, plus a dome primitive with a flat base cap — both fully extrudable and exportable.</p>
+            <h4>Base-Point Transforms</h4>
+            <p>Pick an exact pivot point before Move, Rotate, or Scale — eliminating random-origin behavior. Axis locking (X/Y/Z) gives precise directional control like professional CAD tools.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Camera Frustum Cones</h4>
-            <p>Save named camera views with lens settings. Yellow wireframe cones show each camera's FOV in the scene — drag the eye or target spheres to reposition live.</p>
+            <h4>Multi-Object Selection</h4>
+            <p>Shift+Click, drag window select, and add/remove from selection. Works with Move, Copy, Rotate, Scale, and Array — true group editing like modern cloud CAD tools.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Sky System</h4>
-            <p>Sky on/off toggle with color + horizon pickers. Upload any JPG/PNG panorama as a full sky dome — it wraps equirectangularly and appears in all elevation views.</p>
+            <h4>Crosshair Cursor</h4>
+            <p>Replaced the large cursor with a precision crosshair for more accurate interaction points and better alignment in elevation views.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Chamfer &amp; Fillet</h4>
-            <p>Click any vertical edge and type a bevel distance (Chamfer) or arc radius (Fillet). Each corner can be filleted independently and all operations fully undo.</p>
+            <h4>On-Screen Axis Legend</h4>
+            <p>Live display showing X = Width, Y = Depth, Z = Height — plus active drawing plane and transform state (pivot + axis lock) at all times.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Left &amp; Back Views</h4>
-            <p>Two new elevation views — Left <span class="kbd">opposite of 6</span> and Back — completing the full 6-direction orthographic set alongside Front, Right, Top, and Iso.</p>
-          </div>
-        </div>
-
-        <div class="new-card">
-          <span class="new-badge">New</span>
-          <div>
-            <h4>Tumble Mode <span class="kbd">T</span></h4>
-            <p>Free spherical orbit around the model center — rotate to any angle including below the floor plane. Great for checking underside geometry.</p>
-          </div>
-        </div>
-
-        <div class="new-card">
-          <span class="new-badge">New</span>
-          <div>
-            <h4>Two-Pass Selection</h4>
-            <p>Exact geometry ray-cast first, then a 24px proximity fallback for thin or small objects — so you never miss a click on complex scenes.</p>
+            <h4>Snap ON/OFF Toggle</h4>
+            <p>Quick snap toggle added to the toolbar next to Grid. Cleaned up toolbar removes broken tools and restores fully working ones including Array.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">Fixed</span>
           <div>
-            <h4>Save/Load Position Bug</h4>
-            <p>Boolean and stretched objects now reload at correct XYZ positions. The previous double-Y-offset that moved objects on reload is resolved.</p>
+            <h4>Elevation-Based Drawing</h4>
+            <p>Draw directly in Front, Back, Left, and Right views with correct axis mapping (XY/XZ/ZY planes). No more snapping to ground unintentionally.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">Fixed</span>
           <div>
-            <h4>Copy &amp; Fillet Fixes</h4>
-            <p>Copy/mirror of stretched objects now clones live geometry. Fillet no longer overwrites previous fillets, and Chamfer/Fillet undo restores geometry instead of deleting the object.</p>
+            <h4>Array Command</h4>
+            <p>Fully restored Array tool — works with multiple selected objects, independent from legacy roof logic, with clean UI and Escape support.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Improved Snapping</h4>
+            <p>Better plane-aware snapping with reduced incorrect point selection and more predictable endpoint and midpoint behavior across all views.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Escape / Cancel Behavior</h4>
+            <p>Escape now reliably cancels active commands, clears selection when appropriate, and consistently closes dialogs.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">Fixed</span>
+          <div>
+            <h4>Rendering &amp; Stability</h4>
+            <p>Fixed a major rendering bug affecting geometry display. Improved viewport reliability and stabilized the scene rendering loop.</p>
           </div>
         </div>
 
@@ -1406,13 +1414,13 @@
             Just download, open in your browser, and start building.
             Works on Windows, Mac, and Linux.
           </p>
-          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.2.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
-            ↓ Download aiarchitekV6.2.html
+          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.3.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
+            ↓ Download aiarchitekV6.3.html
           </a>
           <div class="version-info">
             <div class="v-item">
               <label>Version</label>
-              <span id="version-label">v6.2</span>
+              <span id="version-label">v6.3</span>
             </div>
             <div class="v-item">
               <label>Released</label>
@@ -1430,7 +1438,7 @@
             <div style="display:flex; flex-direction:column; gap:1rem;">
               <div style="display:flex; gap:1rem; align-items:flex-start;">
                 <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">1.</span>
-                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.2.html</code> to your computer</p>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.3.html</code> to your computer</p>
               </div>
               <div style="display:flex; gap:1rem; align-items:flex-start;">
                 <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">2.</span>
@@ -1549,9 +1557,9 @@
         const latest = data[0];
         const totalDownloads = data.reduce((sum, release) =>
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
-        ) + 10;
+        ) + 21;
 
-        document.getElementById('version-label').textContent    = latest.tag_name || 'v6.2';
+        document.getElementById('version-label').textContent    = latest.tag_name || 'v6.3';
         document.getElementById('release-date').textContent     =
           new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
         document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
