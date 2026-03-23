@@ -1006,11 +1006,70 @@
     }
 
     /* ── RESPONSIVE ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 57px; left: 0; right: 0;
+      background: rgba(10,12,15,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--accent); }
+
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       nav ul { display: none; }
+      .hamburger { display: flex; }
       .download-box { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
       .wireframe { display: none; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .docs-grid { grid-template-columns: 1fr; }
+      .new-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      #preview { padding: 0 1rem 4rem; }
+      h1 { letter-spacing: -2px; }
     }
   </style>
 </head>
@@ -1028,7 +1087,21 @@
       <li><a href="#download">Download</a></li>
       <li><a href="#donate">Support</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#features"  onclick="closeMenu()">Features</a>
+    <a href="#whats-new" onclick="closeMenu()">V6.3 New</a>
+    <a href="#tools"     onclick="closeMenu()">Tools</a>
+    <a href="#docs"      onclick="closeMenu()">Docs</a>
+    <a href="#gallery"   onclick="closeMenu()">Gallery</a>
+    <a href="#download"  onclick="closeMenu()">Download</a>
+    <a href="#donate"    onclick="closeMenu()">Support</a>
+  </div>
 
   <!-- ── HERO ── -->
   <section class="hero">
@@ -1044,7 +1117,7 @@
     </svg>
 
     <div class="hero-badge">Version 6.3 — Now Available</div>
-    <h1><em>AI-Architek</em><br/><span style="font-size:0.75em; letter-spacing:-2px;">V6.3</span></h1>
+    <h1><em>AI-Architek</em><br/><em style="font-size:0.72em; letter-spacing:-1px;">V6.3</em></h1>
     <p class="hero-sub">
       A browser-based 3D architectural CAD tool. No installation, no plugins — just open the HTML file and start building. All tools, all exports, fully offline.
     </p>
@@ -1512,7 +1585,7 @@
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Found a bug? Have an idea for a new feature? Send an email and I'll get back to you as soon as I can.
           </p>
-          <a href="/cdn-cgi/l/email-protection#0a6b786962637e6f61246f7e624a6d676b636624696567" class="btn-primary">
+          <a href="mailto:architek.eth@gmail.com" class="btn-primary">
             ✉ <span class="__cf_email__" data-cfemail="95f4e7f6fdfce1f0febbf0e1fdd5f2f8f4fcf9bbf6faf8">[email&#160;protected]</span>
           </a>
         </div>
@@ -1527,7 +1600,7 @@
       Built with ♥ ·
       GitHub ·
       <a href="docs/getting-started.html">Documentation</a> ·
-      <a href="/cdn-cgi/l/email-protection#21405342494855444a0f44554961464c40484d0f424e4c">Report a Bug</a> ·
+      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> ·
       <a href="license.html">License</a>
     </p>
     <p style="margin-top:0.5rem; font-size:0.65rem; color:#8895a7">
@@ -1537,6 +1610,20 @@
 
   <!-- ── SCRIPTS ── -->
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Hamburger menu
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
     // Tools tab switching
     function showTab(btn, id) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
