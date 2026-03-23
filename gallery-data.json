@@ -1,16 +1,6 @@
 {
   "records": [
     {
-      "id": "rec2vuyGV5OlSWLb8",
-      "fields": {
-        "Name": "First Video",
-        "Description": "Recording the Pan Command",
-        "Tag": "AI-Architek",
-        "Approve": true,
-        "LocalImage": "gallery/rec2vuyGV5OlSWLb8_panvideo.webm"
-      }
-    },
-    {
       "id": "rec5g1mQhAFU7ooyC",
       "fields": {
         "Name": "Array and background Setting",
