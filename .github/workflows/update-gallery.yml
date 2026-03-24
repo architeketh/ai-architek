@@ -30,7 +30,7 @@ jobs:
           cat raw-airtable.json
 
           python3 << 'PYEOF'
-          import json, urllib.request, os, re
+          import json, urllib.request, os, re, subprocess
 
           with open('raw-airtable.json') as f:
               data = json.load(f)
@@ -61,7 +61,23 @@ jobs:
               else:
                   print(f"Already exists: {local_path}")
 
-              output_records.append({
+              # Generate poster image for .mov/.mp4 videos using ffmpeg
+              poster_path = None
+              if local_path.lower().endswith(('.mov', '.mp4', '.webm')):
+                  poster_path = local_path.rsplit('.', 1)[0] + '_poster.jpg'
+                  if not os.path.exists(poster_path):
+                      print(f"Generating poster for {local_path}")
+                      try:
+                          subprocess.run([
+                              'ffmpeg', '-i', local_path,
+                              '-ss', '00:00:01', '-vframes', '1',
+                              '-q:v', '2', poster_path
+                          ], check=True, capture_output=True)
+                      except Exception as e:
+                          print(f"Could not generate poster: {e}")
+                          poster_path = None
+
+              record_data = {
                   'id': record['id'],
                   'fields': {
                       'Name': fields.get('Name', 'Anonymous'),
@@ -70,7 +86,11 @@ jobs:
                       'Approve': True,
                       'LocalImage': local_path
                   }
-              })
+              }
+              if poster_path and os.path.exists(poster_path):
+                  record_data['fields']['Poster'] = poster_path
+
+              output_records.append(record_data)
 
           with open('gallery-data.json', 'w') as f:
               json.dump({'records': output_records}, f, indent=2)
