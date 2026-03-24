@@ -3,8 +3,8 @@
     {
       "id": "rec5g1mQhAFU7ooyC",
       "fields": {
-        "Name": "Array and background Setting",
-        "Description": "testing V6.3",
+        "Name": "v6.3 Array and background Setting",
+        "Description": "v6.3 testing ",
         "Tag": "V6.3",
         "Approve": true,
         "LocalImage": "gallery/rec5g1mQhAFU7ooyC_Ai-Architek-V6-2-03-21-2026_11_30_PM.png"
@@ -13,7 +13,7 @@
     {
       "id": "rec7nWQAi2qTqivRz",
       "fields": {
-        "Name": "Pan Capture Movie",
+        "Name": "v6.3 Pan and Capture",
         "Description": "Combing Pan and Capture to create a movie",
         "Tag": "AI-Architek",
         "Approve": true,
@@ -21,9 +21,29 @@
       }
     },
     {
+      "id": "recPM8OKbbI2DMoiY",
+      "fields": {
+        "Name": "v6.4.5 Elevations",
+        "Description": "Elevation View of Wall and Opening",
+        "Tag": "V6.4.5",
+        "Approve": true,
+        "LocalImage": "gallery/recPM8OKbbI2DMoiY_buildings_elevations.png"
+      }
+    },
+    {
+      "id": "recTLdJH3DS2iXNSW",
+      "fields": {
+        "Name": "v6.4.5 Axon",
+        "Description": "Axon highlighting Wall and Opening tools",
+        "Tag": "V6.4.5",
+        "Approve": true,
+        "LocalImage": "gallery/recTLdJH3DS2iXNSW_buildings_axon.png"
+      }
+    },
+    {
       "id": "recZcrCq9yIl9hZHp",
       "fields": {
-        "Name": "Second Image",
+        "Name": "v6.1 Second Image",
         "Description": "Testing the background for sky",
         "Tag": "V6.1",
         "Approve": true,
@@ -33,7 +53,7 @@
     {
       "id": "recg3xGPz1r5rL8RU",
       "fields": {
-        "Name": "New Shapes create with Sweep",
+        "Name": "v6.1 New Shapes create with Sweep",
         "Description": "an image with some of the shapes that can be created with V6",
         "Tag": "V6.1",
         "Approve": true,
@@ -43,9 +63,9 @@
     {
       "id": "recgK3WrL3WTOkOlx",
       "fields": {
-        "Name": "First Image Uploaded to AI Architek",
+        "Name": "v6.0 First Image Uploaded to AI Architek",
         "Description": "",
-        "Tag": "V6",
+        "Tag": "V6.0",
         "Approve": true,
         "LocalImage": "gallery/recgK3WrL3WTOkOlx_AI-Architek-Export-03-20-2026_06_11_PM.png"
       }
