@@ -856,68 +856,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.92);
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-    }
-
-    .lightbox.open { display: flex; }
-
-    .lightbox img,
-    .lightbox video {
-      max-width: 92vw;
-      max-height: 88vh;
-      border-radius: 8px;
-      box-shadow: 0 0 60px rgba(0,229,255,0.15);
-      cursor: default;
-    }
-
-    .lightbox-close {
-      position: fixed;
-      top: 1.5rem; right: 1.5rem;
-      font-size: 1.8rem;
-      color: var(--muted);
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-      z-index: 1000;
-    }
-
-    .lightbox-close:hover { color: var(--accent); }
-
-    .lightbox-caption {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 50%; transform: translateX(-50%);
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .gallery-card { cursor: pointer; }
-
-    .video-badge {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 52px; height: 52px;
-      background: rgba(0,229,255,0.15);
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      pointer-events: none;
-    }
-
     /* ── DONATE ── */
     #donate {
       padding: 8rem 0;
@@ -1142,7 +1080,7 @@
     <a href="#" class="logo">AI-<span>Architek</span></a>
     <ul>
       <li><a href="#features">Features</a></li>
-      <li><a href="#whats-new">V6.3 New</a></li>
+      <li><a href="#whats-new">V6.4.5 New</a></li>
       <li><a href="#tools">Tools</a></li>
       <li><a href="#docs">Docs</a></li>
       <li><a href="#gallery">Gallery</a></li>
@@ -1157,7 +1095,7 @@
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
     <a href="#features"  onclick="closeMenu()">Features</a>
-    <a href="#whats-new" onclick="closeMenu()">V6.3 New</a>
+    <a href="#whats-new" onclick="closeMenu()">V6.4.5 New</a>
     <a href="#tools"     onclick="closeMenu()">Tools</a>
     <a href="#docs"      onclick="closeMenu()">Docs</a>
     <a href="#gallery"   onclick="closeMenu()">Gallery</a>
@@ -1178,10 +1116,10 @@
       <line x1="160" y1="160" x2="180" y2="140" stroke="#00e5ff" stroke-width="1"/>
     </svg>
 
-    <div class="hero-badge">Version 6.3 — Now Available</div>
-    <h1><em>AI-Architek</em><br/><em style="font-size:0.72em; letter-spacing:-1px;">V6.3</em></h1>
+    <div class="hero-badge">Version 6.3 — Better Tools, Smoother Workflow</div>
+    <h1><em>AI-Architek</em><br/><em style="font-size:0.72em; letter-spacing:-1px;">V6.4.5</em></h1>
     <p class="hero-sub">
-      A browser-based 3D architectural CAD tool. No installation, no plugins — just open the HTML file and start building. All tools, all exports, fully offline.
+      A cool browser-based 3D modeling tool with some of the precision features you usually expect from bigger CAD apps. No install, no plugins, fully offline after download.
     </p>
     <div class="hero-actions">
       <a href="#download" class="btn-primary">
@@ -1205,9 +1143,9 @@
           <div class="preview-dot" style="background:#ff5f57"></div>
           <div class="preview-dot" style="background:#febc2e"></div>
           <div class="preview-dot" style="background:#28c840"></div>
-          <div class="preview-bar-url">aiarchitekV6.3.html — AI Architek V6.3</div>
+          <div class="preview-bar-url">aiarchitekV6.4.5.html — AI Architek V6.4.5</div>
         </div>
-        <img src="app-preview.png" alt="AI-Architek V6 interface showing 3D architectural scene with solar lighting, camera views, and transform tools" />
+        <img src="app-preview.png" alt="AI-Architek V6.4.5 interface showing browser-based modeling, dimensions, section cuts, and transform tools" />
       </div>
     </div>
   </section>
@@ -1217,8 +1155,8 @@
     <div class="container">
       <div class="features-header reveal">
         <p class="section-label">// What's inside</p>
-        <h2 class="section-title">Everything in one file.</h2>
-        <p class="section-desc">Professional CAD tools in a browser tab — no install, no account, no internet after download.</p>
+        <h2 class="section-title">A cool browser modeler with real tools.</h2>
+        <p class="section-desc">Fast to open, easy to run, and packed with useful CAD-style tools like snapping, base-point transforms, elevation drawing, lighting controls, and real exports.</p>
       </div>
       <div class="features-grid reveal">
         <div class="feature-card">
@@ -1261,131 +1199,119 @@
       <div class="new-header reveal">
         <div>
           <p class="section-label">// Changelog</p>
-          <h2 class="section-title">What's new in V6.3.</h2>
+          <h2 class="section-title">What's new in V6.4.5.</h2>
         </div>
-        <p class="section-desc" style="text-align:right">The goal for V6.3 is simple: keep the app lightweight and fun to use, while adding a few of the workflow tools people usually associate with the big CAD players.</p>
+        <p class="section-desc" style="text-align:right">Still fast and simple, now with more of the handy tools you'd expect in much bigger modeling apps.</p>
       </div>
 
-      <!-- Top 6 Highlights -->
-      <p class="section-label reveal" style="margin-bottom:1.5rem;">// Top 6 highlights</p>
-      <div class="features-grid reveal" style="margin-bottom:4rem;">
+      <div style="margin-bottom:2.5rem" class="reveal">
+        <h3 style="font-family:'Syne',sans-serif; font-size:1.4rem; margin-bottom:0.5rem;">V6.4.5 Highlights</h3>
+        <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; max-width:760px;">
+          This release builds on the smoother V6.3 foundation and adds a fresh batch of pro-style tools: dimensions, layers, section cuts, unit switching, cleaner corner editing, and better wall openings. These features are documented in the newer V6.4.5 app build and its in-app help. </p>
+      </div>
+
+      <div class="features-grid reveal" style="margin-bottom:3rem">
         <div class="feature-card">
-          <div class="feature-icon">🧭</div>
-          <h3>Smoother Command Flow</h3>
-          <p>Cleaner selection, better cancel behavior, and less sticky tool state make the app feel more predictable during everyday modeling.</p>
+          <div class="feature-icon">⟺</div>
+          <h3>Quick Dimensions</h3>
+          <p>Click two points to drop a dimension and switch the display between metric and feet-and-inches right from the dim bar.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>Better Snapping</h3>
-          <p>Endpoint, midpoint, intersection, and grid snapping help place geometry more accurately with clearer visual feedback.</p>
+          <div class="feature-icon">🗂️</div>
+          <h3>Simple Layers</h3>
+          <p>Add layers, toggle visibility, and assign objects to an active layer so larger models stay easier to organize.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📌</div>
-          <h3>Base-Point Move &amp; Copy</h3>
-          <p>Pick a base point, then place objects exactly where you want them — a simple workflow borrowed from heavier CAD tools.</p>
+          <div class="feature-icon">✂️</div>
+          <h3>Live Section Cuts</h3>
+          <p>Slice the model on X, Y, or Z with a live slider to inspect interiors and understand the model faster.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📐</div>
-          <h3>Elevation Drawing</h3>
-          <p>Draw more reliably in front, side, and back views, then turn those sketches into usable 3D geometry.</p>
+          <div class="feature-icon">🚪</div>
+          <h3>Real Wall Openings</h3>
+          <p>Doors and windows now cut actual openings through walls on placement, making the model feel more architectural right away.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🌟</div>
-          <h3>Cleaner Presentation Views</h3>
-          <p>Improved lighting, shadows, and display controls make models easier to read and nicer to show.</p>
+          <div class="feature-icon">⬡</div>
+          <h3>Chamfer &amp; Fillet</h3>
+          <p>Pick two edges, enter a distance or radius, and soften boxy corners with cleaner corner-edit tools in plan and elevation workflows.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📦</div>
-          <h3>Better Imports</h3>
-          <p>Imported geometry scales more cleanly and behaves more like native objects once it lands in the scene.</p>
+          <div class="feature-icon">📏</div>
+          <h3>Unit Toggle</h3>
+          <p>Switch between meters and feet/inches in the project workflow so measurements and corner edits are easier to understand.</p>
         </div>
       </div>
 
-      <!-- Detailed changelog cards -->
-      <p class="section-label reveal" style="margin-bottom:1.5rem;">// Full changelog</p>
       <div class="new-grid reveal">
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Base-Point Transforms</h4>
-            <p>Pick an exact pivot point before Move, Rotate, or Scale — eliminating random-origin behavior. Axis locking (X/Y/Z) gives precise directional control like professional CAD tools.</p>
+            <h4>Dimension Tool</h4>
+            <p>Drop clear distance callouts by clicking two points, then flip the readout between meters and feet/inches as needed.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Multi-Object Selection</h4>
-            <p>Shift+Click, drag window select, and add/remove from selection. Works with Move, Copy, Rotate, Scale, and Array — true group editing like modern cloud CAD tools.</p>
+            <h4>Layer Controls</h4>
+            <p>Create layers, toggle visibility, and keep objects organized with a simple active-layer workflow built right into the side panel.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Crosshair Cursor</h4>
-            <p>Replaced the large cursor with a precision crosshair for more accurate interaction points and better alignment in elevation views.</p>
+            <h4>Section Cut Viewer</h4>
+            <p>Cut live slices through the model on X, Y, or Z with a position slider to inspect rooms, openings, and internal relationships.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>On-Screen Axis Legend</h4>
-            <p>Live display showing X = Width, Y = Depth, Z = Height — plus active drawing plane and transform state (pivot + axis lock) at all times.</p>
+            <h4>Door &amp; Window Openings</h4>
+            <p>Placing a door or window now makes a true opening through the wall instead of just dropping a visual placeholder.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">New</span>
           <div>
-            <h4>Snap ON/OFF Toggle</h4>
-            <p>Quick snap toggle added to the toolbar next to Grid. Cleaned up toolbar removes broken tools and restores fully working ones including Array.</p>
+            <h4>Chamfer &amp; Fillet Corners</h4>
+            <p>Use the two-edge workflow to soften corners with chamfers and fillets, including horizontal corner variants for cleaner massing edits.</p>
+          </div>
+        </div>
+
+        <div class="new-card">
+          <span class="new-badge">New</span>
+          <div>
+            <h4>Project Unit Toggle</h4>
+            <p>Swap between metric and imperial-friendly feet-and-inches so dimensions and corner edits match the way you like to work.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">Fixed</span>
           <div>
-            <h4>Elevation-Based Drawing</h4>
-            <p>Draw directly in Front, Back, Left, and Right views with correct axis mapping (XY/XZ/ZY planes). No more snapping to ground unintentionally.</p>
+            <h4>Cleaner Snap Defaults</h4>
+            <p>Snaps now start off by default and can be enabled individually from the snapping panel, keeping selection and drawing behavior calmer.</p>
           </div>
         </div>
 
         <div class="new-card">
           <span class="new-badge">Fixed</span>
           <div>
-            <h4>Array Command</h4>
-            <p>Fully restored Array tool — works with multiple selected objects, independent from legacy roof logic, with clean UI and Escape support.</p>
-          </div>
-        </div>
-
-        <div class="new-card">
-          <span class="new-badge">Fixed</span>
-          <div>
-            <h4>Improved Snapping</h4>
-            <p>Better plane-aware snapping with reduced incorrect point selection and more predictable endpoint and midpoint behavior across all views.</p>
-          </div>
-        </div>
-
-        <div class="new-card">
-          <span class="new-badge">Fixed</span>
-          <div>
-            <h4>Escape / Cancel Behavior</h4>
-            <p>Escape now reliably cancels active commands, clears selection when appropriate, and consistently closes dialogs.</p>
-          </div>
-        </div>
-
-        <div class="new-card">
-          <span class="new-badge">Fixed</span>
-          <div>
-            <h4>Rendering &amp; Stability</h4>
-            <p>Fixed a major rendering bug affecting geometry display. Improved viewport reliability and stabilized the scene rendering loop.</p>
+            <h4>Edge Display Cleanup</h4>
+            <p>The edge toggle now clears edge overlays more reliably, even after geometry edits and corner operations.</p>
           </div>
         </div>
 
       </div>
+    </div>
+  </section></div>
     </div>
   </section>
 
@@ -1448,6 +1374,8 @@
           <tr><td>Chamfer <span class="new-pill">V6</span></td><td>—</td><td>Click a vertical edge, type bevel distance</td></tr>
           <tr><td>Fillet <span class="new-pill">V6</span></td><td>—</td><td>Click a vertical edge, type arc radius — each corner independently</td></tr>
           <tr><td>Delete Face</td><td>—</td><td>Remove a single face from any solid</td></tr>
+          <tr><td>Dimension <span class="new-pill">V6.4.5</span></td><td>—</td><td>Click two points to place a live measurement label with metric / imperial toggle.</td></tr>
+          <tr><td>Chamfer / Fillet <span class="new-pill">V6.4.5</span></td><td>—</td><td>Two-edge corner workflow for cleaner beveled and rounded edits.</td></tr>
           <tr><td>Trim</td><td>—</td><td>Cut a wall at its intersection with another</td></tr>
           <tr><td>Extend</td><td>—</td><td>Extend a wall to meet a boundary line</td></tr>
           <tr><td>Undo / Redo</td><td>Ctrl+Z / Ctrl+Y</td><td>Full undo history — multi-object move/copy reverses all at once</td></tr>
@@ -1471,6 +1399,7 @@
           <tr><td>Zoom Out ×2 <span class="new-pill">V6</span></td><td>—</td><td>Step farther (max distance 600m)</td></tr>
           <tr><td>Wireframe</td><td>Z</td><td>Toggle wireframe display mode</td></tr>
           <tr><td>Grid</td><td>G</td><td>Toggle floor + vertical reference grids</td></tr>
+          <tr><td>Section Cut <span class="new-pill">V6.4.5</span></td><td>—</td><td>Slice the model on X / Y / Z with a live position control.</td></tr>
           <tr><td>Set Camera</td><td>V</td><td>Click eye position → click look-at target</td></tr>
           <tr><td>Camera Cones <span class="new-pill">V6</span></td><td>—</td><td>Show/hide frustum cone for all saved cameras</td></tr>
         </tbody>
@@ -1499,7 +1428,7 @@
           <h2 class="section-title">Learn the app.</h2>
         </div>
         <p class="section-desc" style="text-align:right">
-          Guides, references, and a full tool index — everything in one place.
+          Guides, references, and a full tool index — now including the newer V6.4.5 workflow tools.
         </p>
       </div>
       <div class="docs-grid">
@@ -1587,13 +1516,13 @@
             Just download, open in your browser, and start building.
             Works on Windows, Mac, and Linux.
           </p>
-          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.3.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
-            ↓ Download aiarchitekV6.3.html
+          <a href="https://github.com/architeketh/ai-architek/releases/latest/download/aiarchitekV6.4.5.html" id="main-download-btn" class="btn-primary" style="margin-bottom:0" download>
+            ↓ Download aiarchitekV6.4.5.html
           </a>
           <div class="version-info">
             <div class="v-item">
               <label>Version</label>
-              <span id="version-label">v6.3</span>
+              <span id="version-label">v6.4.5</span>
             </div>
             <div class="v-item">
               <label>Released</label>
@@ -1611,7 +1540,7 @@
             <div style="display:flex; flex-direction:column; gap:1rem;">
               <div style="display:flex; gap:1rem; align-items:flex-start;">
                 <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">1.</span>
-                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.3.html</code> to your computer</p>
+                <p style="font-size:0.82rem; color:var(--text); line-height:1.6;">Click <strong>Download</strong> to save <code style="color:var(--accent)">aiarchitekV6.4.5.html</code> to your computer</p>
               </div>
               <div style="display:flex; gap:1rem; align-items:flex-start;">
                 <span style="color:var(--accent); font-size:0.85rem; min-width:1.5rem;">2.</span>
@@ -1685,7 +1614,7 @@
           <p style="color:var(--muted); font-size:0.85rem; line-height:1.7; margin-bottom:1.5rem;">
             Found a bug? Have an idea for a new feature? Send an email and I'll get back to you as soon as I can.
           </p>
-          <a href="/cdn-cgi/l/email-protection#1d7c6f7e7574697876337869755d7a707c7471337e7270" class="btn-primary">
+          <a href="mailto:architek.eth@gmail.com" class="btn-primary">
             ✉ <span class="__cf_email__" data-cfemail="95f4e7f6fdfce1f0febbf0e1fdd5f2f8f4fcf9bbf6faf8">[email&#160;protected]</span>
           </a>
         </div>
@@ -1695,19 +1624,12 @@
   </section>
 
   <!-- ── FOOTER — 3 changes: whiter text, GitHub unlinked, License → local page ── -->
-  <!-- ── LIGHTBOX ── -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-close" onclick="closeLightbox()">✕</div>
-    <div id="lightbox-content" onclick="event.stopPropagation()"></div>
-    <div class="lightbox-caption" id="lightbox-caption"></div>
-  </div>
-
   <footer>
     <p>
       Built with ♥ ·
       GitHub ·
       <a href="docs/getting-started.html">Documentation</a> ·
-      <a href="/cdn-cgi/l/email-protection#bedfccddd6d7cadbd590dbcad6fed9d3dfd7d290ddd1d3">Report a Bug</a> ·
+      <a href="mailto:architek.eth@gmail.com">Report a Bug</a> ·
       <a href="license.html">License</a>
     </p>
     <p style="margin-top:0.5rem; font-size:0.65rem; color:#8895a7">
@@ -1716,7 +1638,7 @@
   </footer>
 
   <!-- ── SCRIPTS ── -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Hamburger menu
     const hamburger   = document.getElementById('hamburger');
     const mobileMenu  = document.getElementById('mobile-menu');
@@ -1751,9 +1673,9 @@
         const latest = data[0];
         const totalDownloads = data.reduce((sum, release) =>
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
-        ) + 34;
+        ) + 21;
 
-        document.getElementById('version-label').textContent    = latest.tag_name || 'v6.3';
+        document.getElementById('version-label').textContent    = latest.tag_name || 'v6.4.5';
         document.getElementById('release-date').textContent     =
           new Date(latest.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
         document.getElementById('dl-count-section').textContent = totalDownloads.toLocaleString();
@@ -1769,27 +1691,6 @@
     }
 
     // ── GALLERY — reads from gallery-data.json (no token needed) ──
-    function openLightbox(src, caption, isVideo) {
-      const content = document.getElementById('lightbox-content');
-      const cap     = document.getElementById('lightbox-caption');
-      if (isVideo) {
-        content.innerHTML = `<video src="${src}" controls autoplay style="max-width:92vw;max-height:88vh;border-radius:8px;"></video>`;
-      } else {
-        content.innerHTML = `<img src="${src}" alt="${caption}" />`;
-      }
-      cap.textContent = caption;
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.getElementById('lightbox-content').innerHTML = '';
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
     function renderGallery(records) {
       const grid = document.getElementById('gallery-grid');
       const approved = records.filter(r => r.fields.Approve);
@@ -1805,33 +1706,15 @@
         return;
       }
       grid.innerHTML = approved.map(r => {
-        const f      = r.fields;
-        const src    = f.LocalImage ? f.LocalImage : null;
-        const name   = f.Name        || 'Anonymous';
-        const desc   = f.Description || name;
-        const tag    = f.Tag         || 'AI-Architek';
-        const poster = f.Poster      || null;
-        if (!src) return '';
-
-        const isVideo = src.match(/\.(mov|mp4|webm)$/i);
-
-        if (isVideo) {
-          return `
-            <div class="gallery-card" onclick="openLightbox('${src}','${name} — ${tag}',true)">
-              <div class="gallery-img" style="position:relative;background:var(--surface);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">
-                ${poster ? `<img src="${poster}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" />` : '<span style="font-size:3rem;position:relative;z-index:1;">🎬</span>'}
-                <div class="video-badge">▶</div>
-              </div>
-              <div class="gallery-info">
-                <span class="gallery-author">${name}</span>
-                <span class="gallery-tag">${tag} · Video</span>
-              </div>
-            </div>`;
-        }
-
+        const f    = r.fields;
+        const img  = f.LocalImage ? f.LocalImage : null;
+        const name = f.Name        || 'Anonymous';
+        const desc = f.Description || name;
+        const tag  = f.Tag         || 'AI-Architek';
+        if (!img) return '';
         return `
-          <div class="gallery-card" onclick="openLightbox('${src}','${name} — ${tag}',false)">
-            <img class="gallery-img" src="${src}" alt="${desc}" loading="lazy" />
+          <div class="gallery-card">
+            <img class="gallery-img" src="${img}" alt="${desc}" loading="lazy" />
             <div class="gallery-info">
               <span class="gallery-author">${name}</span>
               <span class="gallery-tag">${tag}</span>
