@@ -856,6 +856,104 @@
       margin-bottom: 0.5rem;
     }
 
+
+    /* ── GALLERY LIGHTBOX ── */
+    .gallery-hint {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .gallery-card[data-media-src] {
+      cursor: zoom-in;
+    }
+
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(5,7,10,0.92);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .gallery-lightbox.open {
+      display: flex;
+    }
+
+    .gallery-lightbox-inner {
+      width: min(1100px, 100%);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .gallery-lightbox-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .gallery-lightbox-meta h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .gallery-lightbox-meta p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .gallery-close {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .gallery-close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+    }
+
+    .gallery-stage {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #07090c;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-stage img,
+    .gallery-stage video {
+      max-width: 100%;
+      max-height: 72vh;
+      display: block;
+      object-fit: contain;
+      background: #07090c;
+    }
+
     /* ── DONATE ── */
     #donate {
       padding: 8rem 0;
@@ -1486,7 +1584,8 @@
         <div>
           <p class="section-label">// Community</p>
           <h2 class="section-title">Made with AI-Architek.</h2>
-          <p class="section-desc">Work created by the community. Submit your best renders and get featured.</p>
+          <p class="section-desc">Work created by the community. Double-click any image or movie to open gallery view. Submit your best renders and get featured.</p>
+          <p class="gallery-hint">Double-click a gallery item to open it full size.</p>
         </div>
         <a href="https://airtable.com/appeds73VVqOiOMzo/pag4iMECuZoE3mZgm/form" target="_blank" class="gallery-submit">
           📸 Submit Your Work →
@@ -1503,6 +1602,20 @@
 
     </div>
   </section>
+
+
+  <div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true">
+    <div class="gallery-lightbox-inner">
+      <div class="gallery-lightbox-top">
+        <div class="gallery-lightbox-meta">
+          <h3 id="gallery-lightbox-title">Gallery View</h3>
+          <p id="gallery-lightbox-desc">Double-click a gallery item to open it here.</p>
+        </div>
+        <button class="gallery-close" id="gallery-lightbox-close" type="button">Close ✕</button>
+      </div>
+      <div class="gallery-stage" id="gallery-lightbox-stage"></div>
+    </div>
+  </div>
 
   <!-- ── DOWNLOAD ── -->
   <section id="download">
@@ -1706,21 +1819,35 @@
         return;
       }
       grid.innerHTML = approved.map(r => {
-        const f    = r.fields;
-        const img  = f.LocalImage ? f.LocalImage : null;
-        const name = f.Name        || 'Anonymous';
+        const f = r.fields;
+        const imageSrc = f.LocalImage || f.Image || '';
+        const videoSrc = f.LocalVideo || f.Video || f.LocalMovie || f.Movie || '';
+        const mediaSrc = videoSrc || imageSrc;
+        const mediaType = videoSrc || /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(imageSrc) ? 'video' : 'image';
+        const name = f.Name || 'Anonymous';
         const desc = f.Description || name;
-        const tag  = f.Tag         || 'AI-Architek';
-        if (!img) return '';
+        const tag = f.Tag || 'AI-Architek';
+        if (!mediaSrc) return '';
+
+        const mediaHtml = mediaType === 'video'
+          ? `<video class="gallery-img" src="${mediaSrc}" muted playsinline preload="metadata"></video>`
+          : `<img class="gallery-img" src="${mediaSrc}" alt="${desc}" loading="lazy" />`;
+
         return `
-          <div class="gallery-card">
-            <img class="gallery-img" src="${img}" alt="${desc}" loading="lazy" />
+          <div class="gallery-card"
+               data-media-src="${mediaSrc}"
+               data-media-type="${mediaType}"
+               data-title="${name}"
+               data-desc="${desc}">
+            ${mediaHtml}
             <div class="gallery-info">
               <span class="gallery-author">${name}</span>
               <span class="gallery-tag">${tag}</span>
             </div>
           </div>`;
       }).join('');
+
+      attachGalleryLightbox();
     }
 
     async function loadGallery() {
@@ -1746,6 +1873,76 @@
       }
     }
     // ─────────────────────────────────────────────────────
+
+
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function openGalleryLightbox(src, type, title, desc) {
+      const lightbox = document.getElementById('gallery-lightbox');
+      const stage = document.getElementById('gallery-lightbox-stage');
+      const titleEl = document.getElementById('gallery-lightbox-title');
+      const descEl = document.getElementById('gallery-lightbox-desc');
+      if (!lightbox || !stage || !titleEl || !descEl || !src) return;
+
+      titleEl.textContent = title || 'Gallery View';
+      descEl.textContent = desc || '';
+      stage.innerHTML = type === 'video'
+        ? `<video src="${src}" controls autoplay playsinline></video>`
+        : `<img src="${src}" alt="${escapeHtml(desc || title || 'Gallery image')}" />`;
+
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGalleryLightbox() {
+      const lightbox = document.getElementById('gallery-lightbox');
+      const stage = document.getElementById('gallery-lightbox-stage');
+      if (!lightbox || !stage) return;
+      stage.innerHTML = '';
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function attachGalleryLightbox() {
+      const grid = document.getElementById('gallery-grid');
+      if (!grid) return;
+
+      grid.querySelectorAll('.gallery-card[data-media-src]').forEach(card => {
+        card.addEventListener('dblclick', () => {
+          openGalleryLightbox(
+            card.dataset.mediaSrc,
+            card.dataset.mediaType,
+            card.dataset.title,
+            card.dataset.desc
+          );
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      const lightbox = document.getElementById('gallery-lightbox');
+      const closeBtn = document.getElementById('gallery-lightbox-close');
+      if (!lightbox) return;
+      if (e.target === lightbox || e.target === closeBtn) {
+        closeGalleryLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('gallery-lightbox');
+      if (e.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+        closeGalleryLightbox();
+      }
+    });
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
