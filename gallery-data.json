@@ -31,6 +31,16 @@
       }
     },
     {
+      "id": "recLQFDIAXWvNHeYy",
+      "fields": {
+        "Name": "Guggenheim Museum New York",
+        "Description": "Massing Model Guggenheim Museum New York",
+        "Tag": "V6.5.1",
+        "Approve": true,
+        "LocalImage": "gallery/recLQFDIAXWvNHeYy_Guggenheim.png"
+      }
+    },
+    {
       "id": "recPM8OKbbI2DMoiY",
       "fields": {
         "Name": "v6.4.5 Elevations",
