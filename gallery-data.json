@@ -11,6 +11,16 @@
       }
     },
     {
+      "id": "rec5vZ5ikH3mLh67G",
+      "fields": {
+        "Name": "FallingWater V6.5.1",
+        "Description": "Simplified Model of FallingWater",
+        "Tag": "V6.5.1",
+        "Approve": true,
+        "LocalImage": "gallery/rec5vZ5ikH3mLh67G_Fallingwater1.png"
+      }
+    },
+    {
       "id": "rec7nWQAi2qTqivRz",
       "fields": {
         "Name": "v6.3 Pan and Capture",
