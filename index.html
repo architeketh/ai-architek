@@ -1776,6 +1776,7 @@ Guides, references, and a full tool index — now including the steadier V6.5.1 
 
     const GITHUB_USERNAME = 'architeketh';
     const GITHUB_REPO     = 'ai-architek';
+    const MIN_DOWNLOAD_TOTAL = 37;
 
     async function loadReleaseInfo() {
       try {
@@ -1784,9 +1785,10 @@ Guides, references, and a full tool index — now including the steadier V6.5.1 
         if (!data.length) return;
 
         const latest = data[0];
-        const totalDownloads = data.reduce((sum, release) =>
+        const apiDownloads = data.reduce((sum, release) =>
           sum + release.assets.reduce((s, a) => s + a.download_count, 0), 0
-        ) + 21;
+        );
+        const totalDownloads = Math.max(MIN_DOWNLOAD_TOTAL, apiDownloads);
 
 document.getElementById('version-label').textContent    = latest.tag_name || 'V6.5.1';
         document.getElementById('release-date').textContent     =
