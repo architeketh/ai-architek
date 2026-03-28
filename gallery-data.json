@@ -1,16 +1,6 @@
 {
   "records": [
     {
-      "id": "rec5g1mQhAFU7ooyC",
-      "fields": {
-        "Name": "v6.3 Array and background Setting",
-        "Description": "v6.3 testing ",
-        "Tag": "V6.3",
-        "Approve": true,
-        "LocalImage": "gallery/rec5g1mQhAFU7ooyC_Ai-Architek-V6-2-03-21-2026_11_30_PM.png"
-      }
-    },
-    {
       "id": "rec5uNRgdIvEqHEFX",
       "fields": {
         "Name": "Kids Lego FallingWater",
@@ -38,6 +28,16 @@
         "Tag": "AI-Architek",
         "Approve": true,
         "LocalImage": "gallery/rec7nWQAi2qTqivRz_AI-Architek-pan-capture.webm"
+      }
+    },
+    {
+      "id": "recEkMEVWZaKTolAR",
+      "fields": {
+        "Name": "Zaha Hadid Massing",
+        "Description": "Massing Study",
+        "Tag": "V6.5.1",
+        "Approve": true,
+        "LocalImage": "gallery/recEkMEVWZaKTolAR_zaha_hadid_massing.png"
       }
     },
     {
